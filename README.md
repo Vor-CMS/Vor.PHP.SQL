@@ -5,15 +5,6 @@ The Vor Application Group is a set of small applications that help you launch a 
 
 Basically, it's a bunch of different systems you normally find separately in one big, gorgeous bundle designed to help those of us who are not developers to launch an amazing website very quickly with all the bells and whistles you could expect to be added by a major development studio.
 
-##Credit
-Why | Link
------------- | -------------
-Encrypting in JS and decrypting in PHP code | [Link ![](http://i.stack.imgur.com/2x4yG.png)](http://stackoverflow.com/questions/21180721/aes-256-cbc-mcrypt-php-decrypt-and-crypto-js-encrypt)
-Installation popups hiding after a few seconds | [Link ![](http://i.stack.imgur.com/2x4yG.png)](https://gist.github.com/avdg/2210109)
-Idea of how to securely transfer data | [Link ![](http://i.stack.imgur.com/2x4yG.png)](http://cryptojs.altervista.org/js-php)
-The installation wizard | [Link ![](http://i.stack.imgur.com/2x4yG.png)](http://www.panopta.com/2013/02/06/bootstrap-application-wizard-2)
-Styling Framework | [Link ![](http://i.stack.imgur.com/2x4yG.png)](http://getbootstrap.com)
-
 ##Todo
 - [ ] Remove actual Bootstrap (use BootstrapCDN)
 - [ ] Remove actual JQuery (use CDNJS)
@@ -79,3 +70,15 @@ Styling Framework | [Link ![](http://i.stack.imgur.com/2x4yG.png)](http://getboo
   - [ ] Make rollbacks possible
   - [ ] Contain a JSON style content of the new data and the old data (optional feature?)
 - [ ] More Things!
+
+
+##Credit
+Mainly so I can keep track of where I get my code/ideas from.
+
+Who | Why | Link
+------------ | ------------ | -------------
+Shurik | Encrypting in JS and decrypting in PHP code | [Link ![](http://i.stack.imgur.com/2x4yG.png)](http://stackoverflow.com/questions/21180721/aes-256-cbc-mcrypt-php-decrypt-and-crypto-js-encrypt)
+[Avdg](https://github.com/avdg) | Installation popups hiding after a few seconds | [Link ![](http://i.stack.imgur.com/2x4yG.png)](https://gist.github.com/avdg/2210109)
+Rosica | Idea of how to securely transfer data | [Link ![](http://i.stack.imgur.com/2x4yG.png)](http://cryptojs.altervista.org/js-php)
+[Amoffat](https://github.com/amoffat) | The installation wizard | [Link ![](http://i.stack.imgur.com/2x4yG.png)](https://github.com/amoffat/bootstrap-application-wizard/)
+[Mdo](https://github.com/mdo) & [Fat](https://github.com/fat) | Styling Framework | [Link ![](http://i.stack.imgur.com/2x4yG.png)](http://getbootstrap.com)
