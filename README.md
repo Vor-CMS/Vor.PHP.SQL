@@ -77,9 +77,8 @@ Mainly so I can keep track of where I get my code/ideas from.
 
 Who | Why | Link
 ------------ | ------------ | -------------
-Shurik | Encrypting in JS and decrypting in PHP code | [Link ![](http://i.stack.imgur.com/2x4yG.png)](http://stackoverflow.com/questions/21180721/aes-256-cbc-mcrypt-php-decrypt-and-crypto-js-encrypt)
+[Mdp](https://github.com/mdp) & [Ivantcholakov](https://github.com/Ivantcholakov) | Encrypting in JS and decrypting in PHP code | [Link ![](http://i.stack.imgur.com/2x4yG.png)](http://iridadesign.com/starter-public-edition-4/www/playground/gibberish-aes)
 [Avdg](https://github.com/avdg) | Installation popups hiding after a few seconds | [Link ![](http://i.stack.imgur.com/2x4yG.png)](https://gist.github.com/avdg/2210109)
 Rosica | Idea of how to securely transfer data | [Link ![](http://i.stack.imgur.com/2x4yG.png)](http://cryptojs.altervista.org/js-php)
 [Amoffat](https://github.com/amoffat) | The installation wizard | [Link ![](http://i.stack.imgur.com/2x4yG.png)](https://github.com/amoffat/bootstrap-application-wizard/)
 [Mdo](https://github.com/mdo) & [Fat](https://github.com/fat) | Styling Framework | [Link ![](http://i.stack.imgur.com/2x4yG.png)](http://getbootstrap.com)
-[Carlo](https://github.com/carlo) | Base64 encoding | [Link ![](http://i.stack.imgur.com/2x4yG.png)](https://github.com/carlo/jquery-base64)
