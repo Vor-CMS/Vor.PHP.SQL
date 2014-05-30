@@ -8,21 +8,21 @@ Basically, it's a bunch of different systems you normally find separately in one
 ##Credit
 Why | Link
 ------------ | -------------
-Encrypting in JS and decrypting in PHP code | http://stackoverflow.com/questions/21180721/aes-256-cbc-mcrypt-php-decrypt-and-crypto-js-encrypt
-Installation popups hiding after a few seconds | https://gist.github.com/avdg/2210109
-Idea of how to securely transfer data | http://cryptojs.altervista.org/js-php
-The installation wizard | http://www.panopta.com/2013/02/06/bootstrap-application-wizard-2
-Most of the styling | http://getbootstrap.com
+Encrypting in JS and decrypting in PHP code | [Link ![](http://i.stack.imgur.com/2x4yG.png)](http://stackoverflow.com/questions/21180721/aes-256-cbc-mcrypt-php-decrypt-and-crypto-js-encrypt)
+Installation popups hiding after a few seconds | [Link ![](http://i.stack.imgur.com/2x4yG.png)](https://gist.github.com/avdg/2210109)
+Idea of how to securely transfer data | [Link ![](http://i.stack.imgur.com/2x4yG.png)](http://cryptojs.altervista.org/js-php)
+The installation wizard | [Link ![](http://i.stack.imgur.com/2x4yG.png)](http://www.panopta.com/2013/02/06/bootstrap-application-wizard-2)
+Styling Framework | [Link ![](http://i.stack.imgur.com/2x4yG.png)](http://getbootstrap.com)
 
 ##Todo
-- [ ] Remove actual Bootstrap (use CDNJS)
+- [ ] Remove actual Bootstrap (use BootstrapCDN)
 - [ ] Remove actual JQuery (use CDNJS)
 - [ ] Replace claps.js with JQuery functions
 - [ ] Installer
   - [ ] Make the setup wizard my own, that way it will fit better with the themes (instead of using the [Bootstrap Application Wizard](https://github.com/amoffat/bootstrap-application-wizard))
   - [ ] Figure out what install path I want to take (1: Just setup config files for the system, 2: Extract the needed items from a .zip and set them up, 3: Make all of the files from a master PHP file that makes downloading the system very fast and instead lengthens install)
   - [ ] Once feature are selected, add option selection for each one
-- [ ] Encryption (possible models: [1](http://cryptojs.altervista.org/js-php/))
+- [ ] Encryption
   - [ ] JS (front-end) and PHP (back-end + front-end) compatible, AES-complaint, super strong encryption and decryption function set ()
   - [ ] Implement it everywhere things should be encrypted
 - [ ] Make the forums system
