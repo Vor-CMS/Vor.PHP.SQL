@@ -8,14 +8,16 @@ Basically, it's a bunch of different systems you normally find separately in one
 ##Credit
 Why | Link
 ------------ | -------------
-The installation wizard | http://www.panopta.com/2013/02/06/bootstrap-application-wizard-2
+Encrypting in JS and decrypting in PHP code | http://stackoverflow.com/questions/21180721/aes-256-cbc-mcrypt-php-decrypt-and-crypto-js-encrypt
 Installation popups hiding after a few seconds | https://gist.github.com/avdg/2210109
 Idea of how to securely transfer data | http://cryptojs.altervista.org/js-php
+The installation wizard | http://www.panopta.com/2013/02/06/bootstrap-application-wizard-2
 Most of the styling | http://getbootstrap.com
 
 ##Todo
 - [ ] Remove actual Bootstrap (use CDNJS)
 - [ ] Remove actual JQuery (use CDNJS)
+- [ ] Replace claps.js with JQuery functions
 - [ ] Installer
   - [ ] Make the setup wizard my own, that way it will fit better with the themes (instead of using the [Bootstrap Application Wizard](https://github.com/amoffat/bootstrap-application-wizard))
   - [ ] Figure out what install path I want to take (1: Just setup config files for the system, 2: Extract the needed items from a .zip and set them up, 3: Make all of the files from a master PHP file that makes downloading the system very fast and instead lengthens install)
