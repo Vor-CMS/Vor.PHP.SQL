@@ -5,7 +5,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" />
-		<link href="bootstrap/bootstrap-wizard.css" rel="stylesheet" />
+		<link href="http://dl.zbee.me/bootstrap-wizard.css" rel="stylesheet" />
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 		<!--[if lt IE 9]>
@@ -120,7 +120,7 @@
                   <div class="radio">
                     <label>
                       <input type="radio" name="feature_8" id="feature_8" value="1" checked>
-                      <abbr title="Source files (such as CSS and JS files) are not actually on the site, but are linked in through a CDN">Sources: CDN</abbr>
+                      <abbr title="Source files (such as CSS and JS files) are not actually on the site, but are linked in from another site">Sources: Hosted</abbr>
                     </label>
                   </div>
                   <div class="radio">
@@ -354,9 +354,9 @@
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 		<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js" type="text/javascript"></script>
-		<script src="js/bootstrap-wizard.min.js" type="text/javascript"></script>
-    <script src="js/gibberishAES.js" type="text/javascript"></script>
-    <script src="js/sha.js"></script>
+		<script src="http://dl.zbee.me/bootstrap-wizard.min.js" type="text/javascript"></script>
+    <script src="http://dl.zbee.me/gibberishAES.js" type="text/javascript"></script>
+    <script src="http://dl.zbee.me/sha.js"></script>
 		<script type="text/javascript">
       $(document).ready(function() {
         var options = {
@@ -388,7 +388,7 @@
           form = form.replace(re, '", "');
           
           form = '{"' + form + '"}';
-          
+         
           GibberishAES.size(256);
           var shaObj = new jsSHA("70FC54DD", "TEXT");
           var key = shaObj.getHash("SHA-512", "HEX");

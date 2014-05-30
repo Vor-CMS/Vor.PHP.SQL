@@ -11,7 +11,7 @@ Basically, it's a bunch of different systems you normally find separately in one
 - [X] Replace claps.js with JQuery functions
 - [ ] Installer
   - [ ] Make the backend go through all the options in a sane manner
-  - [ ] Make the setup wizard my own, that way it will fit better with the themes (instead of using the [Bootstrap Application Wizard](https://github.com/amoffat/bootstrap-application-wizard))
+  - [ ] Make the setup wizard my own, that way it will fit better with the themes (instead of using the [Bootstrap Application Wizard](https://github.com/amoffat/bootstrap-application-wizard)) (?)
   - [ ] Figure out what install path I want to take (1: Just setup config files for the system, 2: Extract the needed items from a .zip and set them up, 3: Make all of the files from a master PHP file that makes downloading the system very fast and instead lengthens install)
   - [ ] Once feature are selected, add option selection for each one
 - [ ] Encryption

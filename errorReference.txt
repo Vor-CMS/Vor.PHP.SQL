@@ -1,0 +1,3 @@
+001->Encryption might be broken
+Originating from line 17 of setup.php
+Caused by the serialized contents of the installer form being incorrectly encrypted for AJAX.
