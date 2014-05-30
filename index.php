@@ -1,12 +1,3 @@
-<?php/*
-Thanks to
-
-* https://gist.github.com/avdg/2210109                              (hide-after-a-few-seconds popovers)
-* http://www.panopta.com/2013/02/06/bootstrap-application-wizard-2/ (most of the wizard)
-* http://getbootstrap.com                                           (most of the styling)
-* http://cryptojs.altervista.org/js-php/                            (Data transfer idealization)
-*/?>
-
 <!DOCTYPE html>
 <html>
 	<head>
@@ -15,33 +6,6 @@ Thanks to
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link href="bootstrap/bootstrap.min.css" rel="stylesheet" />
 		<link href="bootstrap/bootstrap-wizard.css" rel="stylesheet" />
-		<style type="text/css">
-			.wizard-modal p {
-				margin: 0 0 10px;
-				padding: 0;
-			}
-
-			#wizard-ns-detail-servers, .wizard-additional-servers {
-				font-size: 12px;
-				margin-top: 10px;
-				margin-left: 15px;
-			}
-			#wizard-ns-detail-servers > li, .wizard-additional-servers li {
-				line-height: 20px;
-				list-style-type: none;
-			}
-			#wizard-ns-detail-servers > li > img {
-				padding-right: 5px;
-			}
-
-			.wizard-addl-subsection {
-				margin-bottom: 40px;
-			}
-			.create-server-agent-key {
-				margin-left: 15px; 
-				width: 90%;
-			}
-		</style>
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 		<!--[if lt IE 9]>
@@ -57,7 +21,7 @@ Thanks to
 		</button>
 
 		<div class="wizard" id="satellite-wizard" data-title="Vor Setup">
-
+    
 			<!-- Step 1 Feature Selection -->
 			<div class="wizard-card" data-cardname="name">
 				<h3>Feature Selection</h3>
@@ -355,8 +319,10 @@ Thanks to
 		<script src="js/prettify.js" type="text/javascript"></script>
 		<script src="js/bootstrap-wizard.js" type="text/javascript"></script>
     <script src="js/claps.js" type="text/javascript"></script>
+    <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/aes.js"></script>
+    <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/pbkdf2.js"></script>
 		<script type="text/javascript">
-			$(document).ready(function() {
+      $(document).ready(function() {
         var options = {
           keyboard      : false,
           backdrop      : 'static',
@@ -376,8 +342,50 @@ Thanks to
         wizard.on("submit", function(wizard) {
           wizard.submitSuccess();         // displays the success card
           wizard.hideButtons();           // hides the next and back buttons
-          window.open("http://beta.zbee.me/vor/vor/setup.php?d="+wizard.serialize(), "", "width=5, height=5"); //Encrypt this first: http://cryptojs.altervista.org/js-php/
-        });
+          
+          var form = String(wizard.serialize());
+          
+          var pattern = "=",
+          re = new RegExp(pattern, "g");
+          form = form.replace(re, '": "');
+          
+          var pattern = "&",
+          re = new RegExp(pattern, "g");
+          form = form.replace(re, '", "');
+          
+          form = '{"' + form + '"}';
+          form = JSON.stringify(form);
+          
+          var salt = CryptoJS.lib.WordArray.random(128/8); 
+          var key  = CryptoJS.PBKDF2(CryptoJS.SHA3("70FC54DD"), salt, { keySize: 256/32, iterations: 500 });
+          var iv   = CryptoJS.enc.Hex.parse(CryptoJS.SHA3(form));
+          
+          var encrypted   = CryptoJS.AES.encrypt(form, key, { iv: iv });  
+          var data_base64 = encrypted.ciphertext.toString(CryptoJS.enc.Base64); 
+          var iv_base64   = encrypted.iv.toString(CryptoJS.enc.Base64);       
+          var key_base64  = encrypted.key.toString(CryptoJS.enc.Base64);
+          
+          $.ajax({  
+            type: "POST",  
+            url: "setup.php",  
+            data: {cryption:json_string},
+            context: document.body,
+            async: true,
+            success: function(res, stato) {
+              try {
+                var json_message = CryptoJS.AES.encrypt(res.trim(), key, { iv: iv });
+                var jsObject = eval("(" + json_message + ")");
+                var msg = jsObject.msg;
+              }
+              catch(e) {
+                console.log(e);
+              }
+            },
+            error : function (richiesta, stato, errori) {  
+              var msg = "An error has occured. Call Status: " + stato;  
+              console.log(msg);  
+            }  
+          });
         
         wizard.on("incrementCard", function (wizard) {
           var prevCard = wizard.getActiveCard().prev.title;
