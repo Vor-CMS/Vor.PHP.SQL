@@ -4,7 +4,7 @@
 		<title>Application Wizard Bootstrap v3.x</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link href="bootstrap/bootstrap.min.css" rel="stylesheet" />
+		<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" />
 		<link href="bootstrap/bootstrap-wizard.css" rel="stylesheet" />
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -23,13 +23,20 @@
 		<div class="wizard" id="satellite-wizard" data-title="Vor Setup">
     
 			<!-- Step 1 Feature Selection -->
-			<div class="wizard-card" data-cardname="name">
+			<div class="wizard-card" data-cardname="features">
 				<h3>Feature Selection</h3>
 
         <div class="col-sm-6">
           <div class="wizard-input-section">
             <div class="form-group">
               <div class="col-sm-12">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" value="1" name="feature_7" id="feature_7">
+                    <abbr title="Allows you to create and edit pages on your website (example.com/about, example.com/contact, for example)">Pages</abbr>
+                  </label>
+                </div>
+                <br>
                 <div class="checkbox">
                   <label>
                     <input type="checkbox" value="1" name="feature_2" id="feature_2">
@@ -58,7 +65,7 @@
                     </label>
                   </div>
                 </div>
-                <br><div id="blog_br" style="display:none"><br></div>
+                <br><div id="blog_br" style="display:none"><br><br><br></div>
                 <div class="checkbox">
                   <label>
                     <input type="checkbox" value="1" name="feature_4" id="feature_4">
@@ -108,6 +115,21 @@
                     <abbr title="When the system can, it will log all actions to a DB table">Logging</abbr>
                   </label>
                 </div>
+                <br>
+                <div class="well well-sm">
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="feature_8" id="feature_8" value="1" checked>
+                      <abbr title="Source files (such as CSS and JS files) are not actually on the site, but are linked in through a CDN">Sources: CDN</abbr>
+                    </label>
+                  </div>
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="feature_8" id="feature_8" value="2">
+                      <abbr title="Source files (such as CSS and JS files) are included with the project">Sources: Included</abbr>
+                    </label>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -115,7 +137,7 @@
 			</div>
     
 			<!-- Step 2 Database Connection -->
-			<div class="wizard-card" data-cardname="name">
+			<div class="wizard-card" data-cardname="database">
 				<h3>Database Connection</h3>
 
         <div class="col-sm-6">
@@ -176,7 +198,7 @@
 			</div>
 
 			<!-- Step 3 Metadata -->
-			<div class="wizard-card" data-cardname="group">
+			<div class="wizard-card" data-cardname="meta">
 				<h3>Metadata</h3>
 
         <div class="col-sm-6">
@@ -187,7 +209,7 @@
             
             <div class="form-group">
               <div class="col-sm-12">
-                <input type="text" class="form-control" id="meta_sitename" name="meta_sitename" placeholder="Website Name">
+                <input type="text" class="form-control" id="meta_sitename" name="meta_sitename">
               </div>
             </div>
           </div>
@@ -201,7 +223,7 @@
 
             <div class="form-group">
               <div class="col-sm-12">
-                  <input type="text" class="form-control" id="meta_simpledomain" name="meta_simpledomain" placeholder="Domain Simple" />
+                  <input type="text" class="form-control" id="meta_simpledomain" name="meta_simpledomain">
               </div>
             </div>
           </div>
@@ -215,7 +237,19 @@
 
             <div class="form-group">
               <div class="col-sm-12">
-                <input type="text" class="form-control" id="meta_domain" name="meta_domain" placeholder="Domain Actual" />
+                <input type="text" class="form-control" id="meta_domain" name="meta_domain">
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="wizard-input-section">
+            <p>
+              <abbr title="Any text you want to go before the names of your tables (for example: if you set 'vor_' a table that might be made is 'vor_users')">Database Preface</abbr>
+            </p>
+
+            <div class="form-group">
+              <div class="col-sm-12">
+                <input type="text" class="form-control" id="meta_preface" name="meta_preface">
               </div>
             </div>
           </div>
@@ -290,37 +324,39 @@
 
 				<div class="wizard-error">
 					<div class="alert alert-error">
-						<strong>There was a problem</strong> with your submission.
-						Please correct the errors and re-submit.
+            Vor <strong>Unuccessfully</strong> Setup.
+            <br>
+						There was a problem with your submission.
 					</div>
+	
+					<div class="alert alert-info ajax-info"></div>
 				</div>
 	
 				<div class="wizard-failure">
 					<div class="alert alert-error">
-						<strong>There was a problem</strong> submitting the form.
-						Please try again in a minute.
+            Vor <strong>Unsuccessfully</strong> Setup.
+						<br>
+            Something broke!
 					</div>
+	
+					<div class="alert alert-info ajax-info"></div>
 				</div>
 	
 				<div class="wizard-success">
 					<div class="alert alert-success">
-						<span class="create-server-name"></span>Server Created <strong>Successfully.</strong>
+						Vor <strong>Successfully</strong> Setup.
 					</div>
 	
-					<a class="btn btn-default create-another-server">Create another server</a>
-					<span style="padding:0 10px">or</span>
-					<a class="btn btn-success im-done">Done</a>
+					<div class="alert alert-info ajax-info"></div>
 				</div>
 			</div>
 		</div>
 
-		<script src="js/jquery-2.0.3.min.js" type="text/javascript"></script>
-		<script src="js/bootstrap.min.js" type="text/javascript"></script>
-		<script src="js/prettify.js" type="text/javascript"></script>
-		<script src="js/bootstrap-wizard.js" type="text/javascript"></script>
-    <script src="js/claps.js" type="text/javascript"></script>
-    <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/aes.js"></script>
-    <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/pbkdf2.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+		<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js" type="text/javascript"></script>
+		<script src="js/bootstrap-wizard.min.js" type="text/javascript"></script>
+    <script src="js/gibberishAES.js" type="text/javascript"></script>
+    <script src="js/sha.js"></script>
 		<script type="text/javascript">
       $(document).ready(function() {
         var options = {
@@ -329,6 +365,7 @@
           show          : true,
           showCancel    : false,
           showClose     : false,
+          submitUrl     : 'setup.php',
           contentHeight : 400,
           contentWidth  : 700
         };
@@ -340,9 +377,6 @@
         });
         
         wizard.on("submit", function(wizard) {
-          wizard.submitSuccess();         // displays the success card
-          wizard.hideButtons();           // hides the next and back buttons
-          
           var form = String(wizard.serialize());
           
           var pattern = "=",
@@ -354,38 +388,35 @@
           form = form.replace(re, '", "');
           
           form = '{"' + form + '"}';
-          form = JSON.stringify(form);
           
-          var salt = CryptoJS.lib.WordArray.random(128/8); 
-          var key  = CryptoJS.PBKDF2(CryptoJS.SHA3("70FC54DD"), salt, { keySize: 256/32, iterations: 500 });
-          var iv   = CryptoJS.enc.Hex.parse(CryptoJS.SHA3(form));
+          GibberishAES.size(256);
+          var shaObj = new jsSHA("70FC54DD", "TEXT");
+          var key = shaObj.getHash("SHA-512", "HEX");
+          var encrypted = GibberishAES.enc(form, key);
           
-          var encrypted   = CryptoJS.AES.encrypt(form, key, { iv: iv });  
-          var data_base64 = encrypted.ciphertext.toString(CryptoJS.enc.Base64); 
-          var iv_base64   = encrypted.iv.toString(CryptoJS.enc.Base64);       
-          var key_base64  = encrypted.key.toString(CryptoJS.enc.Base64);
+          var json_string = {"data": encrypted, "key": key};
+          json_string = JSON.stringify(json_string);
           
-          $.ajax({  
+          $.ajax({
             type: "POST",  
-            url: "setup.php",  
+            url: wizard.args.submitUrl,
             data: {cryption:json_string},
+            dataType: "json",
             context: document.body,
             async: true,
             success: function(res, stato) {
-              try {
-                var json_message = CryptoJS.AES.encrypt(res.trim(), key, { iv: iv });
-                var jsObject = eval("(" + json_message + ")");
-                var msg = jsObject.msg;
+              wizard.hideButtons();
+              $('.ajax-info').html(res.message);
+              if (res.success == "2") {
+                wizard.submitSuccess();
+              } else if (res.success == "1") {
+                wizard.submitError();
+              } else {
+                wizard.submitFailure();
               }
-              catch(e) {
-                console.log(e);
-              }
-            },
-            error : function (richiesta, stato, errori) {  
-              var msg = "An error has occured. Call Status: " + stato;  
-              console.log(msg);  
-            }  
+            }
           });
+        });
         
         wizard.on("incrementCard", function (wizard) {
           var prevCard = wizard.getActiveCard().prev.title;
@@ -405,13 +436,14 @@
         var forum = false;
         var blog = false;
         var linkShrink = false;
+        var pages = false;
         
         $('#feature_1').popover({
           trigger: 'manual',
           delay: {show:500, hide:300}
         });
         
-        $('#feature_1').change(function(){
+        $('#feature_1').change(function(){ //Login System
           if ($('#feature_1').is(':checked')) {
             loginChecked = true;
           }
@@ -419,7 +451,7 @@
             loginChecked = false;
           }
           
-          if (forum || blog || linkShrink) { //You have to have the login system if you have some other systems
+          if (forum || blog || linkShrink || pages) { //You have to have the login system if you have some other systems
             $('#feature_1').prop('checked', true);
             
             $('#feature_1').popover('show'); //Notify the user of their mistake
@@ -427,41 +459,55 @@
           }
         });
         
-        $('#feature_2').change(function(){
+        $('#feature_2').change(function(){ //Forums
           if ($('#feature_2').is(':checked')) {
             forum = true;
             $('#feature_1').prop('checked', true);
           } else {
             forum = false;
             
-            if (!loginChecked && !blog && !linkShrink) {
+            if (!loginChecked && !blog && !linkShrink && !pages) {
               $('#feature_1').prop('checked', false);
             }
           }
         });
         
-        claps.hide('#feature_3_expand');//$('#feature_3_expand').toggle();
-        $('#feature_3').change(function(){
+        $('#feature_7').change(function(){ //Pages
+          if ($('#feature_7').is(':checked')) {
+            pages = true;
+            $('#feature_1').prop('checked', true);
+          } else {
+            pages = false;
+            
+            if (!loginChecked && !blog && !linkShrink && !forum) {
+              $('#feature_7').prop('checked', false);
+            }
+          }
+        });
+        
+        $('#feature_3_expand').hide();
+        $('#blog_br').hide();
+        $('#feature_3').change(function(){ //Blog
           if ($('#feature_3').is(':checked')) {
             blog = true;
             $('#feature_1').prop('checked', true);
-            claps.show('#feature_3_expand');//$('#feature_3_expand').toggle();
-            claps.show("#blog_br");
+            $('#feature_3_expand').show();
+            $('#blog_br').show();
           } else {
             blog = false;
-            claps.hide('#feature_3_expand');//$('#feature_3_expand').toggle();
-            claps.hide('#blog_br');
+            $('#feature_3_expand').hide();
+            $('#blog_br').hide();
             $('#feature_3_1').prop('checked', false);
             $('#feature_3_2').prop('checked', false);
             
-            if (!loginChecked && !forum && !linkShrink) {
+            if (!loginChecked && !forum && !linkShrink && !pages) {
               $('#feature_1').prop('checked', false);
             }
           }
         });
         
         $('#feature_4_expand').toggle();
-        $('#feature_4').change(function () {
+        $('#feature_4').change(function () { //Link Shrinker
           if ($('#feature_4').is(':checked')) {
             $('#feature_4_expand').toggle();
           } else {
@@ -470,20 +516,20 @@
             $('#feature_4_1').prop('checked', false);
             $('#feature_4_2').prop('checked', false);
             
-            if (!loginChecked && !forum && !blog && !linkShrink) {
+            if (!loginChecked && !forum && !blog && !linkShrink && !pages) {
               $('#feature_1').prop('checked', false);
             }
           }
         });
         
-        $('#feature_4_1').change(function () {
+        $('#feature_4_1').change(function () { //Link Shrink Administration
           if ($('#feature_4_1').is(':checked')) {
             linkShrink = true;
             $('#feature_1').prop('checked', true);
           } else {
             linkShrink = false;
             
-            if (!loginChecked && !forum && !blog) {
+            if (!loginChecked && !forum && !blog && !pages) {
               $('#feature_1').prop('checked', false);
             }
           }
