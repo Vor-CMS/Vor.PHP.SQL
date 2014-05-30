@@ -82,3 +82,4 @@ Shurik | Encrypting in JS and decrypting in PHP code | [Link ![](http://i.stack.
 Rosica | Idea of how to securely transfer data | [Link ![](http://i.stack.imgur.com/2x4yG.png)](http://cryptojs.altervista.org/js-php)
 [Amoffat](https://github.com/amoffat) | The installation wizard | [Link ![](http://i.stack.imgur.com/2x4yG.png)](https://github.com/amoffat/bootstrap-application-wizard/)
 [Mdo](https://github.com/mdo) & [Fat](https://github.com/fat) | Styling Framework | [Link ![](http://i.stack.imgur.com/2x4yG.png)](http://getbootstrap.com)
+[Carlo](https://github.com/carlo) | Base64 encoding | [Link ![](http://i.stack.imgur.com/2x4yG.png)](https://github.com/carlo/jquery-base64)
