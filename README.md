@@ -14,8 +14,12 @@ http://cryptojs.altervista.org/js-php | Idea of how to securely transfer data
 http://getbootstrap.com | Most of the styling
 
 ##Todo
-- [ ] Remove Actual Bootstrap (include it through CDNJS)
-- [ ] Make the setup wizard my own, that way it will fit better with the themes (instead of using the [Bootstrap Application Wizard](https://github.com/amoffat/bootstrap-application-wizard))
+- [ ] Remove actual Bootstrap (use CDNJS)
+- [ ] Remove actual JQuery (use CDNJS)
+- [ ] Installer
+  - [ ] Make the setup wizard my own, that way it will fit better with the themes (instead of using the [Bootstrap Application Wizard](https://github.com/amoffat/bootstrap-application-wizard))
+  - [ ] Figure out what install path I want to take (1: Just setup config files for the system, 2: Extract the needed items from a .zip and set them up, 3: Make all of the files from a master PHP file that makes downloading the system very fast and instead lengthens install)
+  - [ ] Once feature are selected, add option selection for each one
 - [ ] Encryption (possible models: [1](http://cryptojs.altervista.org/js-php/))
   - [ ] JS (front-end) and PHP (back-end + front-end) compatible, AES-complaint, super strong encryption and decryption function set ()
   - [ ] Implement it everywhere things should be encrypted
