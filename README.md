@@ -8,10 +8,10 @@ Basically, it's a bunch of different systems you normally find separately in one
 ##Credit
 Why | Link
 ------------ | -------------
-http://www.panopta.com/2013/02/06/bootstrap-application-wizard-2 | The installation wizard
-https://gist.github.com/avdg/2210109 | Installation popups hiding after a few seconds
-http://cryptojs.altervista.org/js-php | Idea of how to securely transfer data
-http://getbootstrap.com | Most of the styling
+The installation wizard | http://www.panopta.com/2013/02/06/bootstrap-application-wizard-2
+Installation popups hiding after a few seconds | https://gist.github.com/avdg/2210109
+Idea of how to securely transfer data | http://cryptojs.altervista.org/js-php
+Most of the styling | http://getbootstrap.com
 
 ##Todo
 - [ ] Remove actual Bootstrap (use CDNJS)
