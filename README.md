@@ -58,7 +58,7 @@ Basically, it's a bunch of different systems you normally find separately in one
   - [ ] Add notes to links
   - [ ] Optional monetization of links (ad on redirect page)
 - [ ] Login System
-  - [ ] Adapt [Zbee/loginSystem.PHP](https://github.com/Zbee/loginSystem.PHP) compatible with the Vor configuration
+  - [X] Adapt [Zbee/loginSystem.PHP](https://github.com/Zbee/loginSystem.PHP) compatible with the Vor configuration
   - [ ] Custom ranks
   - [ ] Administration panel for the users (all panels are combined into the same place)
   - [ ] Latest activity by user

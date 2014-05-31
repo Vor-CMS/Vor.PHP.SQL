@@ -13,7 +13,7 @@ $pageDyn = [
     <meta charset="utf-8">
     <title><?php echo $sitename; ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="<?php echo $stylesheet; ?>">
+    <link rel="stylesheet" href="<?php echo $sources['stylesheet']; ?>">
     <style>body{padding-top:50px}</style> <!--Bootstrap fixed top bar fix-->
     <!--[if lt IE 9]>
       <script src="<?php echo $sources["htmlshiv"]; ?>"></script>
@@ -74,8 +74,9 @@ $pageDyn = [
           </ul>
 
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="forums" target="_blank">Forums</a></li>
-            <li><a href="linkShrinker" target="_blank">Link Shrinker</a></li>
+            <li><a href="login">Login</a></li>
+            <li><a href="forums">Forums</a></li>
+            <li><a href="linkShrinker">Link Shrinker</a></li>
           </ul>
 
         </div>

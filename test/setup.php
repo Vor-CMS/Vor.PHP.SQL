@@ -11,6 +11,7 @@ require "gibberishAES.php";
 require "emptyDir.php";
 
 $response = array();
+$admin_needed = false;
 
 if (!isset($_POST['cryption'])) { exit; }  
 $result = $_POST['cryption'];  
@@ -57,24 +58,29 @@ if ($jsonObj2->{"feature_1"} === "1") {
     mkdir("login");
     $response["message"] .= "> Made login folder (login/)<br>";
   }
+  $admin_needed = true;
+  $jsonObj2->{"feature_1"} = "true";
 } elseif (!isset($jsonObj2->{"feature_1"})) {
+  $jsonObj2->{"feature_1"} = "false";
   $response["message"] .= "> Login system will be skipped<br>";
 }
 
 //feature_2 (forums)
-if ($jsonObj2->{"feature_2"} === "1" && $jsonObj2->{"feature_1"} === "1") {
+if ($jsonObj2->{"feature_2"} === "1" && $jsonObj2->{"feature_1"} === "true") {
   mkdir("forums");
   $response["message"] .= "> Made forums folder (forums/)<br>";
+  $admin_needed = true;
+  $jsonObj2->{"feature_2"} = "true";
 } elseif (!isset($jsonObj2->{"feature_2"})) {
+  $jsonObj2->{"feature_2"} = "false";
   $response["message"] .= "> Forums will be skipped<br>";
 }
 
 //feature_3 (blog)
-if ($jsonObj2->{"feature_3"} === "1" && $jsonObj2->{"feature_1"} === "1") {
+if ($jsonObj2->{"feature_3"} === "1" && $jsonObj2->{"feature_1"} === "true") {
   if (!file_exists("blog")) { //If the blog folder doesn't already exist
     mkdir("blog");
     $response["message"] .= "> Made blog folder (blog/)<br>";
-    
   } else { //If the blog folder does already exist
     $response["message"] .= "<span class='bg-warning text-warning'>> Blog folder already exists, emptying and deleting now</span><br>";
     emptydir("blog");
@@ -83,12 +89,15 @@ if ($jsonObj2->{"feature_3"} === "1" && $jsonObj2->{"feature_1"} === "1") {
     mkdir("blog");
     $response["message"] .= "> Made blog folder (blog/)<br>";
   }
+  $admin_needed = true;
+  $jsonObj2->{"feature_3"} = "true";
 } elseif (!isset($jsonObj2->{"feature_3"})) {
+  $jsonObj2->{"feature_3"} = "false";
   $response["message"] .= "> Blog will be skipped<br>";
 }
 
 //feature_3_1 (blog comments)
-if ($jsonObj2->{"feature_3_1"} === "1" && $jsonObj2->{"feature_3"} === "1" && $jsonObj2->{"feature_1"} === "1") {
+if ($jsonObj2->{"feature_3_1"} === "1" && $jsonObj2->{"feature_3"} === "true" && $jsonObj2->{"feature_1"} === "true") {
   if (!file_exists("blog/comments")) { //If the blog comments folder doesn't already exist
     mkdir("blog/comments");
     $response["message"] .= "---> Made blog comments folder (blog/comments/)<br>";
@@ -101,61 +110,80 @@ if ($jsonObj2->{"feature_3_1"} === "1" && $jsonObj2->{"feature_3"} === "1" && $j
     mkdir("blog/comments");
     $response["message"] .= "---> Made blog comments folder (blog/comments/)<br>";
   }
+  $jsonObj2->{"feature_3_1"} = true;
 } elseif (!isset($jsonObj2->{"feature_3_1"})) {
+  $jsonObj2->{"feature_3_1"} = "false";
   $response["message"] .= "---> Blog comments will be skipped<br>";
 }
 
 //feature_3_2 (blog multi-authors)
-if ($jsonObj2->{"feature_3_2"} === "1" && $jsonObj2->{"feature_3"} === "1" && $jsonObj2->{"feature_1"} === "1") {
+if ($jsonObj2->{"feature_3_2"} === "1" && $jsonObj2->{"feature_3"} === "true" && $jsonObj2->{"feature_1"} === "true") {
   $response["message"] .= "---> Blog multi-authors will be turned on<br>";
+  $jsonObj2->{"feature_3_2"} = "true";
 } elseif (!isset($jsonObj2->{"feature_3_2"})) {
+  $jsonObj2->{"feature_3_2"} = "false";
   $response["message"] .= "---> Blog multi-authors will be skipped<br>";
 }
 
 //feature_4 (link shrinker)
 if ($jsonObj2->{"feature_4"} === "1") {
   
+  $jsonObj2->{"feature_4"} = true;
 } elseif (!isset($jsonObj2->{"feature_4"})) {
+  $jsonObj2->{"feature_4"} = "false";
   $response["message"] .= "> Link shrinker will be skipped<br>";
 }
 
 //feature_4_1 (link shrinker administration)
-if ($jsonObj2->{"feature_4_1"} === "1" && $jsonObj2->{"feature_4"} === "1" && $jsonObj2->{"feature_1"} === "1") {
+if ($jsonObj2->{"feature_4_1"} === "1" && $jsonObj2->{"feature_4"} === "true" && $jsonObj2->{"feature_1"} === "true") {
   
+  $admin_needed = true;
+  $jsonObj2->{"feature_4_1"} = "true";
 } elseif (!isset($jsonObj2->{"feature_4_1"})) {
+  $jsonObj2->{"feature_4_1"} = "false";
   $response["message"] .= "---> Link shrinker administration will be skipped<br>";
 }
 
 //feature_4_2 (link shrinker tracking)
-if ($jsonObj2->{"feature_4_2"} === "1" && $jsonObj2->{"feature_4"} === "1") {
+if ($jsonObj2->{"feature_4_2"} === "1" && $jsonObj2->{"feature_4"} === "true") {
   
+  $jsonObj2->{"feature_4_2"} = "true";
 } elseif (!isset($jsonObj2->{"feature_4_2"})) {
+  $jsonObj2->{"feature_4_2"} = "false";
   $response["message"] .= "---> Link shrinker tracking will be skipped<br>";
 }
 
 //feature_5 (logging)
 if ($jsonObj2->{"feature_5"} === "1") {
   
+  $jsonObj2->{"feature_5"} = "true";
 } elseif (!isset($jsonObj2->{"feature_5"})) {
+  $jsonObj2->{"feature_5"} = "false";
   $response["message"] .= "> Logging will be skipped<br>";
 }
 
 //feature_6 (encryption)
 if ($jsonObj2->{"feature_6"} === "1") {
   
+  $jsonObj2->{"feature_6"} = true;
 } elseif (!isset($jsonObj2->{"feature_6"})) {
+  $jsonObj2->{"feature_6"} = "false";
   $response["message"] .= "> Encryption will be skipped<br>";
 }
 
 //feature_7 (pages)
 if ($jsonObj2->{"feature_7"} === "1") {
   
+  $admin_needed = "true";
+  $jsonObj2->{"feature_7"} = true;
 } elseif (!isset($jsonObj2->{"feature_7"})) {
+  $jsonObj2->{"feature_7"} = "false";
   $response["message"] .= "> Pages will be skipped<br>";
 }
 
 //feature_8 (source files: hosted or included)
 if ($jsonObj2->{"feature_8"} === "1") { //If they selected to have the source files hosted versus included
+  $jsonObj2->{"feature_8"} = "hosted";
   $response["message"] .= "> Source files will be hosted<br>";
   
 } elseif ($jsonObj2->{"feature_8"} === "2") { //If they selected to have the source files included versus hosted
@@ -175,6 +203,7 @@ if ($jsonObj2->{"feature_8"} === "1") { //If they selected to have the source fi
     mkdir("lib/php");
     $response["message"] .= "> Lib (library) folder made<br>";
   }
+  $jsonObj2->{"feature_8"} = "included";
   
   $gibberishAESphp = file_get_contents("texts/gibberishAES.php.txt"); //Get the contents of a file
   file_put_contents("lib/php/gibberishAES.php", $gibberishAESphp); //Now make that file
@@ -199,6 +228,8 @@ if ($jsonObj2->{"db_loc"} !== "") {
 if ($jsonObj2->{"db_name"} !== "") {
   
 } elseif ($jsonObj2->{"db_name"} === "") {
+  $jsonObj2->{"db_name"} = "site";
+  //Create site database
   $response["message"] .= "<span class='bg-warning text-warning'>>  Database name is required, but is blank -  creating database called 'site'</span><br>";
 }
 
@@ -283,6 +314,14 @@ if ($jsonObj2->{"meta_description"} !== "") {
   $jsonObj2->{"meta_description"} = $metaDesc;
 }
 
+//meta_preface (preface of the database tables)
+if ($jsonObj2->{"meta_preface"} !== "") {
+  $response["message"] .= ">  Database preface set as '".$jsonObj2->{"meta_preface"}."'<br>";
+} elseif ($jsonObj2->{"meta_preface"} === "") {
+  $jsonObj2->{"meta_preface"} = "vor_";
+  $response["message"] .= ">  Database preface set as 'vor_'<br>";
+}
+
 //Email
 $response["message"] .= "<Br>Email<Br>----------------------<br>";
 //email_from (address emails will come from)
@@ -298,33 +337,70 @@ if ($jsonObj2->{"email_reply"} !== "") {
   
 } elseif ($jsonObj2->{"email_reply"} === "") {
   $response["message"] .= "<span class='bg-warning text-warning'>>  The email from field is blank - setting to be 'replies@".$jsonObj2->{"meta_simpledomain"}."' make sure to set this up</span><br>";
-  $jsonObj2->{"email_from"} = "replies@".$jsonObj2->{"meta_simpledomain"};
+  $jsonObj2->{"email_reply"} = "replies@".$jsonObj2->{"meta_simpledomain"};
 }
 
 //email_checkbox_1 (email notification for email changing)
 if ($jsonObj2->{"email_checkbox_1"} === "1") {
   
+  $jsonObj2->{"email_checkbox_1"} = "true";
 } elseif (!isset($jsonObj2->{"email_checkbox_1"})) {
+  $jsonObj2->{"email_checkbox_1"} = "false";
   $response["message"] .= "> Users will not be notified if their email is changed<br>";
 }
 
 //email_checkbox_2 (email notification for password changing)
 if ($jsonObj2->{"email_checkbox_2"} === "1") {
   
+  $jsonObj2->{"email_checkbox_2"} = "true";
 } elseif (!isset($jsonObj2->{"email_checkbox_2"})) {
+  $jsonObj2->{"email_checkbox_2"} = "false";
   $response["message"] .= "> Users will not be notified if their password is changed<br>";
 }
 
 //email_checkbox_3 (email notification for account recovered)
 if ($jsonObj2->{"email_checkbox_3"} === "1") {
   
+  $jsonObj2->{"email_checkbox_3"} = "true";
 } elseif (!isset($jsonObj2->{"email_checkbox_3"})) {
+  $jsonObj2->{"email_checkbox_3"} = "false";
   $response["message"] .= "> Users will not be notified if their account is recovered<br>";
 }
 
 /*
 Wrapping up
 */
+
+$configphp = sprintf(file_get_contents("texts/config.php.txt"), 
+  $jsonObj2->{"feature_1"},
+  $jsonObj2->{"feature_2"},
+  $jsonObj2->{"feature_3"},
+  $jsonObj2->{"feature_3_1"},
+  $jsonObj2->{"feature_3_2"},
+  $jsonObj2->{"feature_4"},
+  $jsonObj2->{"feature_4_1"},
+  $jsonObj2->{"feature_4_2"},
+  $jsonObj2->{"feature_5"},
+  $jsonObj2->{"feature_6"},
+  $jsonObj2->{"feature_7"},
+  $jsonObj2->{"feature_8"},
+  $jsonObj2->{"db_loc"},
+  $jsonObj2->{"db_name"},
+  $jsonObj2->{"db_uname"},
+  $jsonObj2->{"db_pass"},
+  $jsonObj2->{"meta_preface"},
+  $jsonObj2->{"meta_domain"},
+  $jsonObj2->{"meta_simpledomain"},
+  $jsonObj2->{"meta_sitename"},
+  $jsonObj2->{"meta_description"},
+  $jsonObj2->{"email_from"},
+  $jsonObj2->{"email_reply"},
+  $jsonObj2->{"email_checkbox_1"},
+  $jsonObj2->{"email_checkbox_2"},
+  $jsonObj2->{"email_checkbox_3"}
+  );
+file_put_contents("config.php", $configphp);
+$response["message"] .= "> Made the php config file (config.php)<br>";
 
 if ($response["success"] === 2) {
     $response["message"] .= "<br><strong>> Vor setup completed</strong><Br>";

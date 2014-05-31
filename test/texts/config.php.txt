@@ -1,0 +1,43 @@
+<?php
+
+$apps = [
+  "login"         => "%s",
+  "forums"        => "%s",
+  "blog"          => ["main"=>"%s","comments"=>"%s","multi-author"=>"%s"],
+  "linkShrinker"  => ["main"=>"%s","administration"=>"%s","tracking"=>"%s"],
+  "logging"       => "%s",
+  "encryption"    => "%s",
+  "pages"         => "%s"
+];
+
+$source = "%s";
+
+$database = array(
+	"location" => "%s",
+	"database" => "%s",
+	"username" => "%s",
+	"password" => "%s"
+);
+$link = mysqli_connect($database['location'],$database['username'],$database['password'],$database['database']) or die("Error " . mysqli_error($link));
+
+$database_preface = "%s";
+
+$domain = "%s";
+
+$simpledomain = "%s";
+
+$sitename = "%s";
+
+$metadesc = "%s";
+
+$emailfrom = "%s";
+
+$emailreply = "%s";
+
+$notifications = [
+  "emailchange"    => "%s",
+  "passwordchange" => "%s",
+  "accountrecover" => "%s"
+];
+
+?>
