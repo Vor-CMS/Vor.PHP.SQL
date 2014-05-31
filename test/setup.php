@@ -73,15 +73,15 @@ if ($jsonObj2->{"feature_2"} === "1" && $jsonObj2->{"feature_1"} === "1") {
 if ($jsonObj2->{"feature_3"} === "1" && $jsonObj2->{"feature_1"} === "1") {
   if (!file_exists("blog")) { //If the blog folder doesn't already exist
     mkdir("blog");
-    $response["message"] .= "---> Made blog folder (blog/)<br>";
+    $response["message"] .= "> Made blog folder (blog/)<br>";
     
   } else { //If the blog folder does already exist
-    $response["message"] .= "<span class='bg-warning text-warning'>---> Blog folder already exists, emptying and deleting now</span><br>";
+    $response["message"] .= "<span class='bg-warning text-warning'>> Blog folder already exists, emptying and deleting now</span><br>";
     emptydir("blog");
     rmdir("blog");
     
     mkdir("blog");
-    $response["message"] .= "---> Made blog folder (blog/)<br>";
+    $response["message"] .= "> Made blog folder (blog/)<br>";
   }
 } elseif (!isset($jsonObj2->{"feature_3"})) {
   $response["message"] .= "> Blog will be skipped<br>";
