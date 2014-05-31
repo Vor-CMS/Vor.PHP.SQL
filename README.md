@@ -70,6 +70,13 @@ Basically, it's a bunch of different systems you normally find separately in one
   - [ ] Make it possible to see if there were X many logs by a certain user in a certain period to prevent spamming
   - [ ] Make rollbacks possible
   - [ ] Contain a JSON style content of the new data and the old data (optional feature?)
+- [ ] Callable API (?)
+  - [ ] Figure out what goes in an API
+  - [ ] Figure out how to structure it (Making it similar to the Minecraft-API would make it very easy)
+  - [ ] Call for getting some basic info about a user (?)
+  - [ ] Call for updating a user (?)
+  - [ ] Call for adding a link shrink (?)
+  - [ ] Call for adding a blog post
 - [ ] More Things!
 
 
