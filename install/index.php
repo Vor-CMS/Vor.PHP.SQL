@@ -180,9 +180,7 @@
               </div>
             </div>
           </div>
-
           <br>
-          
           <div class="wizard-input-section">
             <p>
               <abbr title="The password of your database account">Database Password</abbr>
@@ -204,7 +202,7 @@
         <div class="col-sm-6">
           <div class="wizard-input-section">
             <p>
-              <abbr title="The name of your website (example: reddit.com is called 'reddit')">Website Name</abbr>
+              <abbr title="The name of your website (example: reddit.com is called 'Reddit')">Website Name</abbr>
             </p>
             
             <div class="form-group">
@@ -250,6 +248,20 @@
             <div class="form-group">
               <div class="col-sm-12">
                 <input type="text" class="form-control" id="meta_preface" name="meta_preface">
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-sm-12">
+          <div class="wizard-input-section">
+            <p>
+              <abbr title="The decription (meta description) of your website. For example, if it's a blog maybe the description is 'A cool blog devoted to cake'">Website Description</abbr>
+            </p>
+
+            <div class="form-group">
+              <div class="col-sm-12">
+                <input type="text" class="form-control" id="meta_description" name="meta_description">
               </div>
             </div>
           </div>
@@ -329,7 +341,7 @@
 						There was a problem with your submission.
 					</div>
 	
-					<div class="alert alert-info ajax-info"></div>
+					<div class="alert alert-info ajax-info" style="max-height:220px;overflow:auto"></div>
 				</div>
 	
 				<div class="wizard-failure">
@@ -339,7 +351,7 @@
             Something broke!
 					</div>
 	
-					<div class="alert alert-info ajax-info"></div>
+					<div class="alert alert-info ajax-info" style="max-height:220px;overflow:auto"></div>
 				</div>
 	
 				<div class="wizard-success">
@@ -347,7 +359,9 @@
 						Vor <strong>Successfully</strong> Setup.
 					</div>
 	
-					<div class="alert alert-info ajax-info"></div>
+					<div class="alert alert-info ajax-info" style="max-height:220px;overflow:auto"></div>
+          
+          <a class="btn btn-lg btn-block btn-primary">See it now</a>
 				</div>
 			</div>
 		</div>
@@ -388,6 +402,7 @@
           form = form.replace(re, '", "');
           
           form = '{"' + form + '"}';
+          console.log(form);
          
           GibberishAES.size(256);
           var shaObj = new jsSHA("70FC54DD", "TEXT");
@@ -409,6 +424,7 @@
               $('.ajax-info').html(res.message);
               if (res.success == "2") {
                 wizard.submitSuccess();
+                $('.ajax-info').scrollTop(100000000);
               } else if (res.success == "1") {
                 wizard.submitError();
               } else {
