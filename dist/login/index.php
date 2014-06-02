@@ -1,9 +1,16 @@
 <?php
-require "../allFiles.php"; #Include all other files so that any page can do any primary function of the system
+
+$pageDyn = [
+  "title" => "Login"
+];
+
+require "../header.php";
 
 $session = session(); #Use the session function to add all information about the user to the session variable
 
 if (verifySession() === true) { $error .= '<div class="alert alert-success">You\'re logged in as: '.$session['username'].'</div>'; } #If the session was correctly verified, display a message saying the user is logged in
+
+if (verifySession() === true && isset($_GET['url'])) { redirect301($_GET['url']); } 
 
 #Error displaying: Checks the URL to see if any of them are set
 if (isset($_GET['activate'])) { $error = '<div class="alert alert-warning">Your account is not activated. Please check your email.</div>'; } 
@@ -31,39 +38,22 @@ if (isset($_GET['baddeletecode'])) { $error = '<div class="alert alert-warning">
 if (isset($_GET['notSet'])) { $error = '<div class="alert alert-warning">Username and Password were not entered.</div>'; }
 
 ?>
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>Login Page</title>
-		<link rel="stylesheet" href="<?php echo $sources['stylesheet']; ?>">
-		<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-	</head>
-	<body>
-		<div class="container" style="margin-top:30px">
-			<div class="col-md-4 col-md-offset-4">
-				<div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title">
-						<strong>Sign in</strong>
-					</h3>
-				</div>
-				<div class="panel-body">
-					<?php echo $error; ?>
-					<form role="form" method="post" action="login.php?url=<?php echo urlencode(currentURL()); ?>">
-					<div class="form-group">
-					<label for="u">Username</label>
-					<input type="text" class="form-control" id="u" name="u" placeholder="Username">
-					</div>
-					<div class="form-group">
-					<label for="p">Password <a href="recover.php">(forgot password)</a></label>
-					<input type="password" class="form-control" id="p" name="p" placeholder="Password">
-					</div>
-					<button type="submit" class="btn btn-sm btn-default">Sign in</button>
-					<a href="register.php" class="btn btn-sm btn-default">Register</a>
-					</form>
-				</div>
-				</div>
-			</div>
-		</div>
-	</body>
-</html>
+
+<div class="col-md-4 col-md-offset-4">
+  <form role="form" method="post" action="login.php?url=<?php echo urlencode(currentURL()); ?>">
+    <?php echo $error; ?>
+    <div class="form-group">
+    <label for="u">Username</label>
+    <input type="text" class="form-control" id="u" name="u" placeholder="Username">
+    </div>
+    <div class="form-group">
+    <label for="p">Password <a href="recover.php">(forgot password)</a></label>
+    <input type="password" class="form-control" id="p" name="p" placeholder="Password">
+    </div>
+    <button type="submit" class="btn btn-lg btn-block btn-primary">Sign in</button>
+    <br>
+    <a href="register" class="btn btn-md btn-block btn-default">Register</a>
+  </form>
+</div>
+
+<?php require "../footer.php"; ?>

@@ -1,14 +1,15 @@
 <?php
-
+$pageDyn = [
+  "title" => "New Page"
+];
 require "header.php";
-
 ?>
 
-<?php echo $pageDyn["content"]; ?>
+
+So much content!
 <!--<div id="select"></div>-->
 
+
 <?php
-
 require "footer.php";
-
 ?>

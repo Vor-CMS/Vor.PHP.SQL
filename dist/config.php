@@ -25,10 +25,10 @@ if ($source === "included") {
 }
 
 $database = array(
-	"location" => "ftp.zekesonxx.com",
-	"database" => "qafbuevv_zbee",
-	"username" => "qafbuevv_zbee",
-	"password" => "VO46kQSfLc7w"
+	"location" => "localhost",
+	"database" => "",
+	"username" => "root",
+	"password" => ""
 );
 mysql_connect($database['location'], $database['username'], $database['password']); mysql_select_db($database_preface.$database['database']);
 

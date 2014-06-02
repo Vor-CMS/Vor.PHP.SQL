@@ -54,7 +54,7 @@ if (isset($_POST['u']) && isset($_POST['p'])) { #If a username and password were
                 insertUserBlob($username, $hash); #Insert the session blob
                 setcookie(str_replace(".", "", $sitename), $hash, strtotime('+30 days'), "/", $simpledomain); #Create a session cookie
                 
-                redirect301("".$url); #Redirect to the desired url
+                redirect301($url); #Redirect to the desired url
               }
             } else { #If there was not a user with the entered username and password
               redirect301("//{$domain}/login?badcombo&url=".$url); #Redirect the user to a page where they get told

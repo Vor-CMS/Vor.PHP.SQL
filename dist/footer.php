@@ -11,12 +11,9 @@
             <style>footer li {float: left;margin-right: 1.5em;margin-bottom: 1.5em;}footer p {clear: left;margin-bottom: 0;}</style> <!--Inline ul-->
             <ul class="list-unstyled">
               <li class="pull-right"><a href="#top">Back to top</a></li>
-              <li><a href="http://news.bootswatch.com" onclick="pageTracker._link(this.href); return false;">Blog</a></li>
-              <li><a href="http://feeds.feedburner.com/bootswatch">RSS</a></li>
-              <li><a href="https://twitter.com/thomashpark">Twitter</a></li>
-              <li><a href="https://github.com/thomaspark/bootswatch/">GitHub</a></li>
-              <li><a href="../help/#api">API</a></li>
-              <li><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=F22JEM3Q78JC2">Donate</a></li>
+              <li><a href="https://github.com/Vor-Apps">Vor</a></li>
+              <li>by</li>
+              <li><a href="https://github.com/Zbee">Zbee</a></li>
             </ul>
           </div>
         </div>

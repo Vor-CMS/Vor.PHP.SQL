@@ -1,10 +1,7 @@
 <?php
-require "config.php";
-$pageDyn = [
-  "title"   => "New Page",
-  "content" => "There's so much content here!!!",
-  "date"    => "2014-05-31"
-];
+$all = true;
+require "allFiles.php";
+$session = session();
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +21,7 @@ $pageDyn = [
     <div class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <a href="#" class="navbar-brand"><?php echo $sitename; ?></a>
+          <a href="//<?php echo $domain; ?>" class="navbar-brand"><?php echo $sitename; ?></a>
           <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -61,20 +58,27 @@ $pageDyn = [
             <li>
               <a href="http://news.bootswatch.com">Blog</a>
             </li>
-            <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="download">Download <span class="caret"></span></a>
-              <ul class="dropdown-menu" aria-labelledby="download">
-                <li><a href="./bootstrap.min.css">bootstrap.min.css</a></li>
-                <li><a href="./bootstrap.css">bootstrap.css</a></li>
-                <li class="divider"></li>
-                <li><a href="./variables.less">variables.less</a></li>
-                <li><a href="./bootswatch.less">bootswatch.less</a></li>
-              </ul>
-            </li>
           </ul>
 
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="login">Login</a></li>
+            <?php
+            if (verifySession() !== true) {
+              echo '
+              <li><a href="//'.$domain.'/login?url='.currentURL().'">Login</a></li>
+              <li><a href="//'.$domain.'/login/register">Register</a></li>
+              ';
+            } else {
+              echo '
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">'.$session['username'].' <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="//'.$domain.'/ucp">Settings</a></li>
+                  <li><a href="//'.$domain.'/login/logout.php?url='.currentURL().'">Logout</a></li>
+                </ul>
+              </li>
+              ';
+            }
+            ?>
             <li><a href="forums">Forums</a></li>
             <li><a href="linkShrinker">Link Shrinker</a></li>
           </ul>
@@ -90,6 +94,9 @@ $pageDyn = [
         <div class="row">
           <div class="col-lg-6">
             <h1><?php echo $pageDyn["title"]; ?></h1>
+            <!--<p>Learn Web Design, Coding, Mobile App Development &amp; More.</p>
+            <p>Start Learning for Free!</p>
+            <p>Learn Web Design, Coding, Mobile App Development &amp; More.</p>-->
           </div>
           <!--<div class="col-lg-6" style="padding: 15px 15px 0 15px;">
             <div class="well sponsor">
