@@ -84,4 +84,5 @@ Who | Why | Link
 [Avdg](https://github.com/avdg) | Installation popups hiding after a few seconds | [Link ![](http://i.stack.imgur.com/2x4yG.png)](https://gist.github.com/avdg/2210109)
 Rosica | Idea of how to securely transfer data | [Link ![](http://i.stack.imgur.com/2x4yG.png)](http://cryptojs.altervista.org/js-php)
 [Amoffat](https://github.com/amoffat) | The installation wizard | [Link ![](http://i.stack.imgur.com/2x4yG.png)](https://github.com/amoffat/bootstrap-application-wizard/)
+[Chirag](http://chir.ag/about) | Location of IPs | [Link ![](http://i.stack.imgur.com/2x4yG.png)](http://chir.ag/projects/geoiploc/)
 [Mdo](https://github.com/mdo) & [Fat](https://github.com/fat) | Styling Framework | [Link ![](http://i.stack.imgur.com/2x4yG.png)](http://getbootstrap.com)
