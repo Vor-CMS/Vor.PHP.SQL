@@ -64,8 +64,11 @@ Basically, it's a bunch of different systems you normally find separately in one
   - [ ] Latest activity by user
   - [ ] Account deletion queueing (when users decide to delete their account, it's deactivated but still exists for ... 7(?) days)
   - [ ] Separation between deletion of just the account, and deleting everything associated with the account (posts, comments, threads, links, etc)
-  - [ ] Make a rich UCP
+  - [X] Let users resume a valid session if their IP matches an existing one
+  - [X] Make a rich UCP base
+  - [ ] Expand the UCP
   - [ ] Let users subscribe to different notifications
+  - [ ] Make the user set certain areas of the site to be restricted to rank
 - [ ] Logging System (logging system and user actions)
   - [ ] Make new entries
   - [ ] Flag entries for later
@@ -84,5 +87,6 @@ Who | Why | Link
 [Avdg](https://github.com/avdg) | Installation popups hiding after a few seconds | [Link ![](http://i.stack.imgur.com/2x4yG.png)](https://gist.github.com/avdg/2210109)
 Rosica | Idea of how to securely transfer data | [Link ![](http://i.stack.imgur.com/2x4yG.png)](http://cryptojs.altervista.org/js-php)
 [Amoffat](https://github.com/amoffat) | The installation wizard | [Link ![](http://i.stack.imgur.com/2x4yG.png)](https://github.com/amoffat/bootstrap-application-wizard/)
+[Thomas Park](http://thomaspark.me/) | Theming of Bootsrap | [Link ![](http://i.stack.imgur.com/2x4yG.png)](http://bootswatch.com/)
 [Tetilize](http://www.telize.com/) | Location of IPs | [Link ![](http://i.stack.imgur.com/2x4yG.png)](http://www.telize.com/)
 [Mdo](https://github.com/mdo) & [Fat](https://github.com/fat) | Styling Framework | [Link ![](http://i.stack.imgur.com/2x4yG.png)](http://getbootstrap.com)

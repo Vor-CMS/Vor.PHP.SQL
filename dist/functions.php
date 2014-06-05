@@ -1,6 +1,7 @@
 <?php
 
 if (!$all) { require "config.php"; } #Include Functions if they're not already here
+if ($apps['encryption'] === "true") { require "encryption/functions.php"; }
 
 #currentURL()
 #Gets the current page's full url
@@ -23,9 +24,10 @@ function numberOfRows($table, $thing = false, $answer = false) {
 
 #insertUserBlob("bob", "rmt9c84htnqy54h78tcy54hmgtx", "2step")
 #Would insert a user blob for "bob" with the code stated above, and set it as a 2step blob
-function insertUserBlob($username, $hash, $action="session") {
+function insertUserBlob($username, $hash, $action="session", $ip=false) {
+  if (!$ip) { $ip = $_SERVER['REMOTE_ADDR']; }
 	$time  = time();
-	$query = mysql_query("INSERT INTO userblobs (user, code, action, date) VALUES ('$username', '$hash', '$action', '$time')");
+	$query = mysql_query("INSERT INTO userblobs (user, code, action, date, ip) VALUES ('$username', '$hash', '$action', '$time', '$ip')");
 }
 
 #banCheck("127.0.0.1", "bob)
@@ -59,14 +61,15 @@ function banCheck($ip, $username = false) {
 function verifySession($session = false) {
 	require "config.php";
 	if (!$session) { $session = $_COOKIE[str_replace(".", "", $sitename)]; }
-	$time    = strtotime( '+30 days' );
-	$query   = mysql_query("SELECT * FROM userblobs WHERE code='$session' AND date<'$time' AND action='session'");
+	$time    = strtotime('+30 days');
+  $ip      = $_SERVER['REMOTE_ADDR'];
+	$query   = mysql_query("SELECT * FROM userblobs WHERE code='$session' AND date<='$time' AND action='session' AND ip='$ip'");
 	$numrows = mysql_num_rows($query);
 	while($value = mysql_fetch_array($query)) { $username = $value['user']; }
 
 	$tamper  = substr($session, -32);
 
-	if ($numrows === 1) {
+	if ($numrows >= 1) {
 		if (md5($username.substr($session, 0, 64)) === $tamper) {
 			if (banCheck($_SERVER['REMOTE_ADDR']) == false) {
 				return true;
@@ -78,7 +81,14 @@ function verifySession($session = false) {
 			mysql_query("DELETE FROM userblobs WHERE code='$session' AND action='session' LIMIT 1");
 		}
 	} else {
-		return "session";
+    $query   = mysql_query("SELECT * FROM userblobs WHERE ip='$ip' AND action='session' AND date<='$time'");
+    $numrows = mysql_num_rows($query);
+    if ($numrows >= 1) {
+      setcookie(str_replace(".", "", $sitename), $value['code'], $value['date'], "/", $simpledomain);
+      return true;
+    } else {
+      return "session";
+    }
 	}
 }
 
@@ -92,36 +102,6 @@ function redirect301($url) {
 	header("HTTP/1.1 301 Moved Permanently"); 
 	header("Location: ".$url);  
 }
-
-#encrypt("myPassword", "bob")
-#Would encrypt "bob"'s "myPassword" text
-function encrypt($decrypted, $username) {
-	$user      = session($username);
-	$salt      = $user['salt'];
-	$key       = hash('SHA256', $salt, true);
-	srand();
-	$iv        = mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_RIJNDAEL_128, MCRYPT_MODE_CBC), MCRYPT_RAND);
-	if (strlen($iv_base64 = rtrim(base64_encode($iv), '=')) != 22) return false;
-	$encrypted = base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_128, $key, $decrypted . md5($decrypted), MCRYPT_MODE_CBC, $iv));
-	
-	return $iv_base64 . $encrypted;
- }
-
-#decrypt("fnmeuixf4hm98g45hgx849gx4hg98h598g", "bob")
-#Would decrypt the stated string of "bob"'s
-function decrypt($encrypted, $username) {
-	$user      = session($username);
-	$salt      = $user['salt'];
-	$key       = hash('SHA256', $salt, true);
-	$iv        = base64_decode(substr($encrypted, 0, 22) . '==');
-	$encrypted = substr($encrypted, 22);
-	$decrypted = rtrim(mcrypt_decrypt(MCRYPT_RIJNDAEL_128, $key, base64_decode($encrypted), MCRYPT_MODE_CBC, $iv), "\0\4");
-	$hash      = substr($decrypted, -32);
-	$decrypted = substr($decrypted, 0, -32);
-	
-	if (md5($decrypted) != $hash) return false;
-	return $decrypted;
- }
  
 #session("bob")
 #Will get the whole user array for the user "bob"

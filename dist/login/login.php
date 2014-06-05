@@ -44,14 +44,14 @@ if (isset($_POST['u']) && isset($_POST['p'])) { #If a username and password were
               while($value = mysql_fetch_array($query)) {
                 $date   = time();
                 $ip     = $_SERVER['REMOTE_ADDR'];
-                if ($encrypt === true) { $ip = encrypt($ip, $username); } #Encrypts the current IP if encryption is turned on
+                if ($apps['encryption'] === true) { $ip = encrypt($ip, $username); } #Encrypts the current IP if encryption is turned on
                 
                 $query3 = mysql_query("UPDATE users SET last_logged_in='$date', old_last_logged_in='".$value['last_logged_in']."', ip='$ip' WHERE id='".$value['id']."'"); #Updates the user a little bit
                 
                 $hash   = hash("sha256", "Logged in".$username."session".substr(str_shuffle(str_repeat("1234567890", 7)), 1, 20)); #Create a session blob
                 $hash   = $hash.md5($username.$hash); #Make tamper checking the blob possible
                 
-                insertUserBlob($username, $hash); #Insert the session blob
+                insertUserBlob($username, $hash, "session", $ip); #Insert the session blob
                 setcookie(str_replace(".", "", $sitename), $hash, strtotime('+30 days'), "/", $simpledomain); #Create a session cookie
                 
                 redirect301($url); #Redirect to the desired url
@@ -62,9 +62,9 @@ if (isset($_POST['u']) && isset($_POST['p'])) { #If a username and password were
           }  else { #If 2step is on
             $hash = hash("sha256", "2step".$username.substr(str_shuffle(str_repeat("12345678907", 11)), 1, 25)); #Create a 2step blob
             $hash = $hash.md5($u.$hash); #Make tamper checking possible
-            insertUserBlob($username, $hash, "2Step"); #Inster 2step blob
+            insertUserBlob($username, $hash, "2Step"); #Insert 2step blob
             $to      = session($username)['email']; #Send an email to the user
-            if ($encrypt === true) { $to = encrypt(session($username)['email'], $u); } #Decrypts the user's email if encryption is turned on
+            if ($apps['encryption'] === true) { $to = encrypt(session($username)['email'], $u); } #Decrypts the user's email if encryption is turned on
             $subject = 'Finish logging into '.$sitename; #Sets the subject of the email
             $message = '
 Hello {$username}

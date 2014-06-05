@@ -24,7 +24,7 @@ if (!isset($_GET['blob'])) { #If the blob variable is not set in the url
 				insertUserBlob($u, $b, 'recover'); #Actually insert the blob
 
 				$to      = $e; #Send to the email
-				if ($encrypt === true) { $to = decrypt($e, $u); } #Decrypts the email if the encryption system is turned on
+				if ($apps['encryption'] === true) { $to = decrypt($e, $u); } #Decrypts the email if the encryption system is turned on
 				$subject = 'Finish Recovering Your '.$sitename.' Account'; #Set the subject of the email
 				$message = "
 Hello {$u}
@@ -103,7 +103,7 @@ Thank you"; #Set the text of the message
 			$extra   = ", password='".$newpass."', passwordchanged='".$date."', salt='".$ns."'"; #Extra SQL for the query
 
 			$to      = session()['email']; #Send the alert to the user
-			if ($encrypt === true) { $to = decrypt(session()['email'], $u); } #Decrypts the user's email if encryption is turned on
+			if ($apps['encryption'] === true) { $to = decrypt(session()['email'], $u); } #Decrypts the user's email if encryption is turned on
 			$subject = 'Your password on '.$sitename.' has changed!'; #Sets the message's subject
 			$message = '
 Hello '.$uname.'

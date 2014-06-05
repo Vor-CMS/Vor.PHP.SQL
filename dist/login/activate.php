@@ -8,7 +8,7 @@ if (isset($_GET['blob'])) { #If there's a blob in the url
 	if ($numrows === 1) { #If there was a valid blob found
 		while($value = mysql_fetch_array($query)) { $username = $value['user']; $uname = $username; } #Grab the username of the blob
 		$ip     = $_SERVER['REMOTE_ADDR'];
-		if ($encrypt === true) { $ip = encrypt($ip, $uname); } #Encrypt the IP if necessary
+		if ($apps['encryption'] === true) { $ip = encrypt($ip, $uname); } #Encrypt the IP if necessary
 		$query  = mysql_query("UPDATE users SET last_logged_in='".time()."', ip='".$ip."', activated='1' WHERE username='".$username."'"); #Update when the user was logged in and activate them
 		mysql_query("DELETE FROM userblobs WHERE code='".$_GET['blob']."' AND action='activate' LIMIT 1"); #Delete the activation blob
 		$hash   = hash("sha256", $uname.substr(str_shuffle(str_repeat("12345678905", 7)), 0, 7)); #Create a new blob

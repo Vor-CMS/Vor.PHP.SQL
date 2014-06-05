@@ -20,7 +20,8 @@ if ($source === "included") {
     "stylesheet" => "http://bootswatch.com/yeti/bootstrap.min.css",
     "htmlshiv"   => "http://dl.zbee.me/html5shiv.js",
     "respond"    => "http://dl.zbee.me/respond.min.js",
-    "bootstrap"  => "//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"
+    "bootstrap"  => "//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js",
+    "jquery"     => "https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"
   ];
 }
 

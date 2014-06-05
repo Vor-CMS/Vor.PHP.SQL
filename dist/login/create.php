@@ -8,7 +8,7 @@ if (isset($_POST['u']) && isset($_POST['e']) && isset($_POST['p']) && isset($_PO
 	
 	#Email
 	$e       = sanitize($_POST['e']);
-	if ($encrypt === true) { $e = encrypt($e, $u); }
+	if ($apps['encryption'] === true) { $e = encrypt($e, $u); }
 	
 	#Password
 	$p       = sanitize($_POST['p']);
@@ -31,7 +31,7 @@ if (isset($_POST['u']) && isset($_POST['e']) && isset($_POST['p']) && isset($_PO
 	
 	#IP
 	$i       = $_SERVER['REMOTE_ADDR'];
-	if ($encrypt === true) { $i = encrypt($i, $u); } #Encrypt the IP if encryption is turned on
+	if ($apps['encryption'] === true) { $i = encrypt($i, $u); } #Encrypt the IP if encryption is turned on
 	
 	if ($c === $p) { #If password equals confirm password
 			insertUserBlob($u, $b, 'activate'); #Insert blob to activate account
@@ -40,7 +40,7 @@ if (isset($_POST['u']) && isset($_POST['e']) && isset($_POST['p']) && isset($_PO
 			VALUES ('$u', '$u', '', '$e', '$e', '$s', '$h', '$t', '$t', '$t', '$t', '$t', '$i', '0', '', '', '0', '0', '')"); #Insert user in database
 
 			$to      = $e; #Set who the message will go to
-			if ($encrypt === true) { $to = decrypt($e, $u); } #Decrypt the email if required
+			if ($apps['encryption'] === true) { $to = decrypt($e, $u); } #Decrypt the email if required
 			$subject = 'Account on '.$sitename.' created! Action Required'; #Set the subject of the email
 			$message = "
 Hello {$u}

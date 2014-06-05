@@ -16,6 +16,7 @@ $session = session();
       <script src="<?php echo $sources["htmlshiv"]; ?>"></script>
       <script src="<?php echo $sources["respond"]; ?>"></script>
     <![endif]-->
+    <script type="text/javascript" src="<?php echo $sources["jquery"]; ?>"></script>
   </head>
   <body>
     <div class="navbar navbar-default navbar-fixed-top">

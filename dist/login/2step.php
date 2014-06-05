@@ -6,7 +6,7 @@ $numrows = mysql_num_rows($query);
 if ($numrows === 1) { #If there's a valid blob
 	while($value = mysql_fetch_array($query)) { $username = $value['user']; $uname = $username; } #Get the username
 	$ip     = $_SERVER['REMOTE_ADDR'];
-	if ($encrypt === true) { $ip = encrypt($ip, $uname); } #Encrypt the IP if necessary
+	if ($apps['encryption'] === true) { $ip = encrypt($ip, $uname); } #Encrypt the IP if necessary
 	$query  = mysql_query("UPDATE users SET last_logged_in='".time()."', old_last_logged_in='".userGet("last_logged_in", $uname)."', ip='".$ip."' WHERE username='".$username."'"); #Tell the database the user logged in
 	$hash   = hash("sha256", $uname."session from 2step".substr(str_shuffle(str_repeat("1234567890", 7)), 1, 50)); #Create a session blob
 	$hash   = $hash.md5($uname.$hash); #Make the blob tamper checkable

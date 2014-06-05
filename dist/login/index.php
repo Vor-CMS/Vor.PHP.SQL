@@ -6,8 +6,6 @@ $pageDyn = [
 
 require "../header.php";
 
-$session = session(); #Use the session function to add all information about the user to the session variable
-
 if (verifySession() === true) { $error .= '<div class="alert alert-success">You\'re logged in as: '.$session['username'].'</div>'; } #If the session was correctly verified, display a message saying the user is logged in
 
 if (verifySession() === true && isset($_GET['url'])) { redirect301($_GET['url']); } 
