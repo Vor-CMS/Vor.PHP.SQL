@@ -1,6 +1,7 @@
 <?php
 
 if (!$all) { require "../allFiles.php"; } #Include Functions if they're not already here
+if (!$all) { require "../header.php"; }
 
 if (isset($_POST['ne']) && isset($_POST['cne']) && isset($_GET['email'])) { #If a new email, a confirmed new email, and the email notifier are all set
   #Setting up the user session
@@ -108,6 +109,77 @@ Thank you"; #Sets the content of that message
 	} else { #If the passwords didn't match somehow
 		redirect301("//".$domain."/".$editing_page."?fail=match"); #Redirect them to a page to let them know
 	}
+}
+
+if (isset($_POST['theme'])) {
+  $uname = session()["username"];
+  switch ($_POST['theme']) { //Make this be a loop to go through the array in config.php, like above
+    case "default":
+			$query = mysql_query("UPDATE users SET theme='default' WHERE username='$uname'");
+      $response["success"] = "1";
+      break;
+    case "amelia":
+			$query = mysql_query("UPDATE users SET theme='amelia' WHERE username='$uname'");
+      $response["success"] = "1";
+      break;
+    case "cerulean":
+			$query = mysql_query("UPDATE users SET theme='cerulean' WHERE username='$uname'");
+      $response["success"] = "1";
+      break;
+    case "cosmo":
+			$query = mysql_query("UPDATE users SET theme='cosmo' WHERE username='$uname'");
+      $response["success"] = "1";
+      break;
+    case "cyborg":
+			$query = mysql_query("UPDATE users SET theme='cyborg' WHERE username='$uname'");
+      $response["success"] = "1";
+      break;
+    case "darkly":
+			$query = mysql_query("UPDATE users SET theme='darkly' WHERE username='$uname'");
+      $response["success"] = "1";
+      break;
+    case "flatly":
+			$query = mysql_query("UPDATE users SET theme='flatly' WHERE username='$uname'");
+      $response["success"] = "1";
+      break;
+    case "journal":
+			$query = mysql_query("UPDATE users SET theme='journal' WHERE username='$uname'");
+      $response["success"] = "1";
+      break;
+    case "lumen":
+			$query = mysql_query("UPDATE users SET theme='lumen' WHERE username='$uname'");
+      $response["success"] = "1";
+      break;
+    case "readable":
+			$query = mysql_query("UPDATE users SET theme='readable' WHERE username='$uname'");
+      $response["success"] = "1";
+      break;
+    case "simplex":
+			$query = mysql_query("UPDATE users SET theme='simplex' WHERE username='$uname'");
+      $response["success"] = "1";
+      break;
+    case "slate":
+			$query = mysql_query("UPDATE users SET theme='slate' WHERE username='$uname'");
+      $response["success"] = "1";
+      break;
+    case "spacelab":
+			$query = mysql_query("UPDATE users SET theme='spacelab' WHERE username='$uname'");
+      $response["success"] = "1";
+      break;
+    case "superhero":
+			$query = mysql_query("UPDATE users SET theme='superhero' WHERE username='$uname'");
+      $response["success"] = "1";
+      break;
+    case "united":
+			$query = mysql_query("UPDATE users SET theme='united' WHERE username='$uname'");
+      $response["success"] = "1";
+      break;
+    case "yeti":
+			$query = mysql_query("UPDATE users SET theme='yeti' WHERE username='$uname'");
+      $response["success"] = "1";
+      break;
+  }
+  echo json_encode($response);
 }
 
 ?>

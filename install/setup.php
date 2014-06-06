@@ -23,8 +23,7 @@ $encrypted = $jsonObj->{"data"};
 $key       = $jsonObj->{"key"};
 if ($encrypted == "" || $key == "")   {
     $response["success"] = 0;
-    $response["message"] = "<span class='bg-danger text-danger'>>Error 001: Encryption is broken, I think.</span><br>";
-    echo GibberishAES::enc(json_encode($response), $key);
+    $response["message"] = "<span class='bg-danger text-danger'>>Error 001: Encryption is broken, I think. Installation stopped.</span><br>";
     exit;  
 }
 

@@ -22,55 +22,6 @@ if (isset($_GET['fail']) && $_GET['fail'] === "match") { $error = '<div class="a
 
       <h3 class="panel-title">
 
-        <strong>Logout</strong>
-
-      </h3>
-
-    </div>
-
-    <div class="panel-body">
-      
-      <div class="btn-group">
-        <a class="btn btn-default" href="http://dl.zbee.me?f=a55">Le Bot 8.4</a>
-        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-          <span class="caret"></span>
-          <span class="sr-only">Toggle Dropdown</span>
-        </button>
-        <ul class="dropdown-menu" role="menu">
-          <li><a href="../default/">Default</a></li>
-          <li class="divider"></li>
-          <li><a href="../amelia/">Amelia</a></li>
-          <li><a href="../cerulean/">Cerulean</a></li>
-          <li><a href="../cosmo/">Cosmo</a></li>
-          <li><a href="../cyborg/">Cyborg</a></li>
-          <li><a href="../darkly/">Darkly</a></li>
-          <li><a href="../flatly/">Flatly</a></li>
-          <li><a href="../journal/">Journal</a></li>
-          <li><a href="../lumen/">Lumen</a></li>
-          <li><a href="../readable/">Readable</a></li>
-          <li><a href="../simplex/">Simplex</a></li>
-          <li><a href="../slate/">Slate</a></li>
-          <li><a href="../spacelab/">Spacelab</a></li>
-          <li><a href="../superhero/">Superhero</a></li>
-          <li><a href="../united/">United</a></li>
-          <li><a href="../yeti/">Yeti</a></li>
-        </ul>
-      </div>
-      
-    </div>
-
-  </div>
-
-</div>
-
-<div class="col-md-4">
-
-  <div class="panel panel-default">
-
-    <div class="panel-heading">
-
-      <h3 class="panel-title">
-
         <strong>Email</strong>
 
       </h3>
@@ -179,7 +130,7 @@ if (isset($_GET['fail']) && $_GET['fail'] === "match") { $error = '<div class="a
           $highlight = " class='";
           $info = '';
           if ($value['action'] !== "session") { $highlight .= " info'"; $info .= '<abbr title="This is not a session code, it may be a recovery code, a 2-step login code, or something akin to that." class="text-info">?</abbr> '; }
-          if ($value['code'] === $_COOKIE[str_replace(".", "", $sitename)]) { $highlight .= " warning'"; $info .= '<abbr title="This is your current session" class="text-info">?</abbr> '; }
+          if ($value['code'] === $_COOKIE[str_replace(".", "", $sitename)]) { $highlight .= " warning'"; $info .= '<abbr title="This is your current session">?</abbr> '; }
           $highlight .= "'";
           
           echo '<tr'.$highlight.'><td><abbr title="'.date("gA", $value['date']).'">'.date("Y-m-d", $value['date']).'</abbr></td><td>'.$eip.'</td><td><script type="application/javascript">function getgeoip(json){document.write("", "<abbr title=\'" + json.country + "\'>" + json.country_code3 + "</abbr>");}</script><script type="application/javascript" src="http://www.telize.com/geoip/'.$ip.'?callback=getgeoip"></script></td><td><a href="//'.$domain.'/login/logout.php?specific='.$value['code'].'&url='.urlencode(currentURL()).'" class="text-danger">Logout</a> '.$info.'</td></tr>';
@@ -191,6 +142,377 @@ if (isset($_GET['fail']) && $_GET['fail'] === "match") { $error = '<div class="a
 
       <a href="//<?php echo $domain; ?>/login/logout.php?all&url=<?php echo urlencode(currentURL()); ?>" class="btn btn-md btn-block btn-primary">Logout all sessions</a>
 
+    </div>
+
+  </div>
+
+</div>
+
+<div class="col-md-4">
+
+  <div class="panel panel-default">
+
+    <div class="panel-heading">
+
+      <h3 class="panel-title">
+
+        <strong>Pick your preferred theme</strong>
+
+      </h3>
+
+    </div>
+
+    <div class="panel-body text-center">
+    
+      <div class="col-sm-12">
+        <div class="alert alert-success" id="changesuccess">
+          The theme changed successfully.
+        </div>
+      </div>
+      <div class="col-sm-12">
+        <div class="alert alert-success" id="changefailure">
+          The theme changed <strong>un</strong>successfully.
+        </div>
+      </div>
+      
+      <div class="btn-group col-sm-12">
+        <button class="btn btn-default col-sm-12 dropdown-toggle" data-toggle="dropdown"><span id="themename">
+        <?php
+        $query = mysql_query("SELECT theme FROM users WHERE username='".$session['username']."'");
+        while ($value = mysql_fetch_array($query)) { echo ucfirst($value['theme']); }
+        ?>
+        </span> <span class="caret"></span></button>
+        <ul class="dropdown-menu" role="menu" style="max-height:300px;overflow:auto;margin-left:20px;">
+          <li><a href="#" id="default">Default</a></li>
+          <li class="divider"></li>
+          <li><a href="#" id="amelia">Amelia</a></li>
+          <li><a href="#" id="cerulean">Cerulean</a></li>
+          <li><a href="#" id="cosmo">Cosmo</a></li>
+          <li><a href="#" id="cyborg">Cyborg</a></li>
+          <li><a href="#" id="darkly">Darkly</a></li>
+          <li><a href="#" id="flatly">Flatly</a></li>
+          <li><a href="#" id="journal">Journal</a></li>
+          <li><a href="#" id="lumen">Lumen</a></li>
+          <li><a href="#" id="readable">Readable</a></li>
+          <li><a href="#" id="simplex">Simplex</a></li>
+          <li><a href="#" id="slate">Slate</a></li>
+          <li><a href="#" id="spacelab">Spacelab</a></li>
+          <li><a href="#" id="superhero">Superhero</a></li>
+          <li><a href="#" id="united">United</a></li>
+          <li><a href="#" id="yeti">Yeti</a></li>
+        </ul>
+      </div>
+      
+      <script type="text/javascript">
+      $("#changesuccess").hide();
+      $("#changefailure").hide();
+      
+      $("#default").click(function() {
+        $.ajax({
+          type: "POST",  
+          url: 'backend.php',
+          data: {theme:'default'},
+          dataType: "json",
+          context: document.body,
+          async: true,
+          success: function(res, stato) {
+            if (res.success == "1") {
+              $("#changesuccess").show();
+              $("#themename").html("Default");
+              window.location.reload();
+            } else {
+              $("#changefailure").show();
+            }
+          }
+        });
+      });
+      $("#amelia").click(function() {
+        $.ajax({
+          type: "POST",  
+          url: 'backend.php',
+          data: {theme:'amelia'},
+          dataType: "json",
+          context: document.body,
+          async: true,
+          success: function(res, stato) {
+            if (res.success == "1") {
+              $("#changesuccess").show();
+              $("#themename").html("Amelia");
+              window.location.reload();
+            } else {
+              $("#changefailure").show();
+            }
+          }
+        });
+      });
+      $("#cerulean").click(function() {
+        $.ajax({
+          type: "POST",  
+          url: 'backend.php',
+          data: {theme:'cerulean'},
+          dataType: "json",
+          context: document.body,
+          async: true,
+          success: function(res, stato) {
+            if (res.success == "1") {
+              $("#changesuccess").show();
+              $("#themename").html("Cerulean");
+              window.location.reload();
+            } else {
+              $("#changefailure").show();
+            }
+          }
+        });
+      });
+      $("#cosmo").click(function() {
+        $.ajax({
+          type: "POST",  
+          url: 'backend.php',
+          data: {theme:'cosmo'},
+          dataType: "json",
+          context: document.body,
+          async: true,
+          success: function(res, stato) {
+            if (res.success == "1") {
+              $("#changesuccess").show();
+              $("#themename").html("Cosmo");
+              window.location.reload();
+            } else {
+              $("#changefailure").show();
+            }
+          }
+        });
+      });
+      $("#cyborg").click(function() {
+        $.ajax({
+          type: "POST",  
+          url: 'backend.php',
+          data: {theme:'cyborg'},
+          dataType: "json",
+          context: document.body,
+          async: true,
+          success: function(res, stato) {
+            if (res.success == "1") {
+              $("#changesuccess").show();
+              $("#themename").html("Cyborg");
+              window.location.reload();
+            } else {
+              $("#changefailure").show();
+            }
+          }
+        });
+      });
+      $("#darkly").click(function() {
+        $.ajax({
+          type: "POST",  
+          url: 'backend.php',
+          data: {theme:'darkly'},
+          dataType: "json",
+          context: document.body,
+          async: true,
+          success: function(res, stato) {
+            if (res.success == "1") {
+              $("#changesuccess").show();
+              $("#themename").html("Darkly");
+              window.location.reload();
+            } else {
+              $("#changefailure").show();
+            }
+          }
+        });
+      });
+      $("#flatly").click(function() {
+        $.ajax({
+          type: "POST",  
+          url: 'backend.php',
+          data: {theme:'flatly'},
+          dataType: "json",
+          context: document.body,
+          async: true,
+          success: function(res, stato) {
+            if (res.success == "1") {
+              $("#changesuccess").show();
+              $("#themename").html("Flatly");
+              window.location.reload();
+            } else {
+              $("#changefailure").show();
+            }
+          }
+        });
+      });
+      $("#journal").click(function() {
+        $.ajax({
+          type: "POST",  
+          url: 'backend.php',
+          data: {theme:'journal'},
+          dataType: "json",
+          context: document.body,
+          async: true,
+          success: function(res, stato) {
+            if (res.success == "1") {
+              $("#changesuccess").show();
+              $("#themename").html("Journal");
+              window.location.reload();
+            } else {
+              $("#changefailure").show();
+            }
+          }
+        });
+      });
+      $("#lumen").click(function() {
+        $.ajax({
+          type: "POST",  
+          url: 'backend.php',
+          data: {theme:'lumen'},
+          dataType: "json",
+          context: document.body,
+          async: true,
+          success: function(res, stato) {
+            if (res.success == "1") {
+              $("#changesuccess").show();
+              $("#themename").html("Lumen");
+              window.location.reload();
+            } else {
+              $("#changefailure").show();
+            }
+          }
+        });
+      });
+      $("#readable").click(function() {
+        $.ajax({
+          type: "POST",  
+          url: 'backend.php',
+          data: {theme:'readable'},
+          dataType: "json",
+          context: document.body,
+          async: true,
+          success: function(res, stato) {
+            if (res.success == "1") {
+              $("#changesuccess").show();
+              $("#themename").html("Readable");
+              window.location.reload();
+            } else {
+              $("#changefailure").show();
+            }
+          }
+        });
+      });
+      $("#simplex").click(function() {
+        $.ajax({
+          type: "POST",  
+          url: 'backend.php',
+          data: {theme:'simplex'},
+          dataType: "json",
+          context: document.body,
+          async: true,
+          success: function(res, stato) {
+            if (res.success == "1") {
+              $("#changesuccess").show();
+              $("#themename").html("Simplex");
+              window.location.reload();
+            } else {
+              $("#changefailure").show();
+            }
+          }
+        });
+      });
+      $("#slate").click(function() {
+        $.ajax({
+          type: "POST",  
+          url: 'backend.php',
+          data: {theme:'slate'},
+          dataType: "json",
+          context: document.body,
+          async: true,
+          success: function(res, stato) {
+            if (res.success == "1") {
+              $("#changesuccess").show();
+              $("#themename").html("Slate");
+              window.location.reload();
+            } else {
+              $("#changefailure").show();
+            }
+          }
+        });
+      });
+      $("#spacelab").click(function() {
+        $.ajax({
+          type: "POST",  
+          url: 'backend.php',
+          data: {theme:'spacelab'},
+          dataType: "json",
+          context: document.body,
+          async: true,
+          success: function(res, stato) {
+            if (res.success == "1") {
+              $("#changesuccess").show();
+              $("#themename").html("Spacelab");
+              window.location.reload();
+            } else {
+              $("#changefailure").show();
+            }
+          }
+        });
+      });
+      $("#superhero").click(function() {
+        $.ajax({
+          type: "POST",  
+          url: 'backend.php',
+          data: {theme:'superhero'},
+          dataType: "json",
+          context: document.body,
+          async: true,
+          success: function(res, stato) {
+            if (res.success == "1") {
+              $("#changesuccess").show();
+              $("#themename").html("Superhero");
+              window.location.reload();
+            } else {
+              $("#changefailure").show();
+            }
+          }
+        });
+      });
+      $("#united").click(function() {
+        $.ajax({
+          type: "POST",  
+          url: 'backend.php',
+          data: {theme:'united'},
+          dataType: "json",
+          context: document.body,
+          async: true,
+          success: function(res, stato) {
+            if (res.success == "1") {
+              $("#changesuccess").show();
+              $("#themename").html("United");
+              window.location.reload();
+            } else {
+              $("#changefailure").show();
+            }
+          }
+        });
+      });
+      $("#yeti").click(function() {
+        $.ajax({
+          type: "POST",  
+          url: 'backend.php',
+          data: {theme:'yeti'},
+          dataType: "json",
+          context: document.body,
+          async: true,
+          success: function(res, stato) {
+            if (res.success == "1") {
+              $("#changesuccess").show();
+              $("#themename").html("Yeti");
+              window.location.reload();
+            } else {
+              $("#changefailure").show();
+            }
+          }
+        });
+      });
+      </script>
+      
     </div>
 
   </div>

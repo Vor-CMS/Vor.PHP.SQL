@@ -2,6 +2,9 @@
 $all = true;
 require "allFiles.php";
 $session = session();
+$userTheme = mysql_query("SELECT * FROM users WHERE username='".$session['username']."'");
+while ($value = @mysql_fetch_array($userTheme)) { $userTheme = $value['theme']; }
+if ($userTheme !== "default") { $sources['stylesheet'] = $themes[$userTheme]; }
 ?>
 
 <!DOCTYPE html>

@@ -14,7 +14,7 @@ $themes = array(
   "amelia"     => "http://bootswatch.com/amelia/bootstrap.min.css",
   "cerulean"   => "http://bootswatch.com/cerulean/bootstrap.min.css",
   "cosmo"      => "http://bootswatch.com/cosmo/bootstrap.min.css",
-  "cyborg"     => "http://bootswatch.com/cybord/bootstrap.min.css",
+  "cyborg"     => "http://bootswatch.com/cyborg/bootstrap.min.css",
   "darkly"     => "http://bootswatch.com/darkly/bootstrap.min.css",
   "flatly"     => "http://bootswatch.com/flatly/bootstrap.min.css",
   "journal"    => "http://bootswatch.com/journal/bootstrap.min.css",
@@ -44,13 +44,12 @@ if ($source === "included") {
 }
 
 $database = array(
-	"location" => "locahost",
+	"location" => "localhost",
 	"database" => "",
 	"username" => "root",
 	"password" => ""
 );
 mysql_connect($database['location'], $database['username'], $database['password']); mysql_select_db($database_preface.$database['database']);
-
 $database_preface = "vor_";
 
 $domain = "beta.zbee.me/vor/vor.php.sql/dist";
