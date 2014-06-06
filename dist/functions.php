@@ -81,14 +81,7 @@ function verifySession($session = false) {
 			mysql_query("DELETE FROM userblobs WHERE code='$session' AND action='session' LIMIT 1");
 		}
 	} else {
-    $query   = mysql_query("SELECT * FROM userblobs WHERE ip='$ip' AND action='session' AND date<='$time'");
-    $numrows = mysql_num_rows($query);
-    if ($numrows >= 1) {
-      setcookie(str_replace(".", "", $sitename), $value['code'], $value['date'], "/", $simpledomain);
-      return true;
-    } else {
-      return "session";
-    }
+    return "session";
 	}
 }
 

@@ -9,14 +9,14 @@ session_start(); #In case the user information was put in a session, pick up the
 session_destroy(); #Now destroy that entire session
 
 if (!isset($_GET['specific'])) {
-mysql_query("DELETE FROM userblobs WHERE code='".$_COOKIE[str_replace(".", "", $sitename)]."' AND action='session' LIMIT 1"); #Delete the current session blob
+  mysql_query("DELETE FROM userblobs WHERE code='".$_COOKIE[str_replace(".", "", $sitename)]."' AND action='session' LIMIT 1"); #Delete the current session blob
 
-if (isset($_GET['all'])) { #If every single session is supposed to be destroyed
-  mysql_query("DELETE FROM userblobs WHERE user='".$u."' and action='session'"); #Destroy ever associated session blob
-}
+  if (isset($_GET['all'])) { #If every single session is supposed to be destroyed
+    mysql_query("DELETE FROM userblobs WHERE user='".$u."' and action='session'"); #Destroy ever associated session blob
+  }
 
-setcookie(str_replace(".", "", $sitename), $hash, strtotime('-30 days'), "/", $simpledomain); #Destroy the cookie by outdating it
-redirect301($url); #Redirect to the desired url
+  setcookie(str_replace(".", "", $sitename), $hash, strtotime('-30 days'), "/", $simpledomain); #Destroy the cookie by outdating it
+  redirect301($url); #Redirect to the desired url
 } else {
   mysql_query("DELETE FROM userblobs WHERE code='".$_GET['specific']."' LIMIT 1"); #Delete the desired session blob
   redirect301($url); #Redirect to the desired url

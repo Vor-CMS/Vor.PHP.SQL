@@ -10,6 +10,24 @@ $apps = [
   "pages"         => "false"
 ];
 
+$themes = array(
+  "amelia"     => "http://bootswatch.com/amelia/bootstrap.min.css",
+  "cerulean"   => "http://bootswatch.com/cerulean/bootstrap.min.css",
+  "cosmo"      => "http://bootswatch.com/cosmo/bootstrap.min.css",
+  "cyborg"     => "http://bootswatch.com/cybord/bootstrap.min.css",
+  "darkly"     => "http://bootswatch.com/darkly/bootstrap.min.css",
+  "flatly"     => "http://bootswatch.com/flatly/bootstrap.min.css",
+  "journal"    => "http://bootswatch.com/journal/bootstrap.min.css",
+  "lumen"      => "http://bootswatch.com/lumen/bootstrap.min.css",
+  "readable"   => "http://bootswatch.com/readable/bootstrap.min.css",
+  "simplex"    => "http://bootswatch.com/simplex/bootstrap.min.css",
+  "slate"      => "http://bootswatch.com/slate/bootstrap.min.css",
+  "spacelab"   => "http://bootswatch.com/spacelab/bootstrap.min.css",
+  "superhero"  => "http://bootswatch.com/superhero/bootstrap.min.css",
+  "united"     => "http://bootswatch.com/united/bootstrap.min.css",
+  "yeti"       => "http://bootswatch.com/yeti/bootstrap.min.css"
+);
+
 $source = "hosted";
 if ($source === "included") {
   $sources = [
@@ -17,7 +35,7 @@ if ($source === "included") {
   ];
 } elseif ($source === "hosted") {
   $sources = [
-    "stylesheet" => "http://bootswatch.com/yeti/bootstrap.min.css",
+    "stylesheet" => $themes['yeti'],
     "htmlshiv"   => "http://dl.zbee.me/html5shiv.js",
     "respond"    => "http://dl.zbee.me/respond.min.js",
     "bootstrap"  => "//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js",
@@ -26,7 +44,7 @@ if ($source === "included") {
 }
 
 $database = array(
-	"location" => "localhost",
+	"location" => "locahost",
 	"database" => "",
 	"username" => "root",
 	"password" => ""
@@ -39,7 +57,7 @@ $domain = "beta.zbee.me/vor/vor.php.sql/dist";
 
 $simpledomain = "zbee.me";
 
-$sitename = "Zbee.me";
+$sitename = "Beta.zbee.me";
 
 $metadesc = "An awesome website";
 

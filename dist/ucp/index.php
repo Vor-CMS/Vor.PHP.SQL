@@ -22,6 +22,55 @@ if (isset($_GET['fail']) && $_GET['fail'] === "match") { $error = '<div class="a
 
       <h3 class="panel-title">
 
+        <strong>Logout</strong>
+
+      </h3>
+
+    </div>
+
+    <div class="panel-body">
+      
+      <div class="btn-group">
+        <a class="btn btn-default" href="http://dl.zbee.me?f=a55">Le Bot 8.4</a>
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+          <span class="caret"></span>
+          <span class="sr-only">Toggle Dropdown</span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+          <li><a href="../default/">Default</a></li>
+          <li class="divider"></li>
+          <li><a href="../amelia/">Amelia</a></li>
+          <li><a href="../cerulean/">Cerulean</a></li>
+          <li><a href="../cosmo/">Cosmo</a></li>
+          <li><a href="../cyborg/">Cyborg</a></li>
+          <li><a href="../darkly/">Darkly</a></li>
+          <li><a href="../flatly/">Flatly</a></li>
+          <li><a href="../journal/">Journal</a></li>
+          <li><a href="../lumen/">Lumen</a></li>
+          <li><a href="../readable/">Readable</a></li>
+          <li><a href="../simplex/">Simplex</a></li>
+          <li><a href="../slate/">Slate</a></li>
+          <li><a href="../spacelab/">Spacelab</a></li>
+          <li><a href="../superhero/">Superhero</a></li>
+          <li><a href="../united/">United</a></li>
+          <li><a href="../yeti/">Yeti</a></li>
+        </ul>
+      </div>
+      
+    </div>
+
+  </div>
+
+</div>
+
+<div class="col-md-4">
+
+  <div class="panel panel-default">
+
+    <div class="panel-heading">
+
+      <h3 class="panel-title">
+
         <strong>Email</strong>
 
       </h3>
