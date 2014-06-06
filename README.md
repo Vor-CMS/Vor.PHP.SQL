@@ -88,5 +88,6 @@ Who | Why | Link
 Rosica | Idea of how to securely transfer data | [Link ![](http://i.stack.imgur.com/2x4yG.png)](http://cryptojs.altervista.org/js-php)
 [Amoffat](https://github.com/amoffat) | The installation wizard | [Link ![](http://i.stack.imgur.com/2x4yG.png)](https://github.com/amoffat/bootstrap-application-wizard/)
 [Thomas Park](http://thomaspark.me/) | Theming of Bootsrap | [Link ![](http://i.stack.imgur.com/2x4yG.png)](http://bootswatch.com/)
+[jdorfman](https://twitter.com/jdorfman) & [mervinej](https://twitter.com/mervinej) | Hosting Bootstrap | [Link ![](http://i.stack.imgur.com/2x4yG.png)](http://www.bootstrapcdn.com/)
 [Tetilize](http://www.telize.com/) | Location of IPs | [Link ![](http://i.stack.imgur.com/2x4yG.png)](http://www.telize.com/)
 [Mdo](https://github.com/mdo) & [Fat](https://github.com/fat) | Styling Framework | [Link ![](http://i.stack.imgur.com/2x4yG.png)](http://getbootstrap.com)

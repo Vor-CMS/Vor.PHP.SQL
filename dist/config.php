@@ -11,21 +11,21 @@ $apps = [
 ];
 
 $themes = array(
-  "amelia"     => "http://bootswatch.com/amelia/bootstrap.min.css",
-  "cerulean"   => "http://bootswatch.com/cerulean/bootstrap.min.css",
-  "cosmo"      => "http://bootswatch.com/cosmo/bootstrap.min.css",
-  "cyborg"     => "http://bootswatch.com/cyborg/bootstrap.min.css",
-  "darkly"     => "http://bootswatch.com/darkly/bootstrap.min.css",
-  "flatly"     => "http://bootswatch.com/flatly/bootstrap.min.css",
-  "journal"    => "http://bootswatch.com/journal/bootstrap.min.css",
-  "lumen"      => "http://bootswatch.com/lumen/bootstrap.min.css",
-  "readable"   => "http://bootswatch.com/readable/bootstrap.min.css",
-  "simplex"    => "http://bootswatch.com/simplex/bootstrap.min.css",
-  "slate"      => "http://bootswatch.com/slate/bootstrap.min.css",
-  "spacelab"   => "http://bootswatch.com/spacelab/bootstrap.min.css",
-  "superhero"  => "http://bootswatch.com/superhero/bootstrap.min.css",
-  "united"     => "http://bootswatch.com/united/bootstrap.min.css",
-  "yeti"       => "http://bootswatch.com/yeti/bootstrap.min.css"
+  "amelia"     => "//netdna.bootstrapcdn.com/bootswatch/3.1.1/amelia/bootstrap.min.css",
+  "cerulean"   => "//netdna.bootstrapcdn.com/bootswatch/3.1.1/cerulean/bootstrap.min.css",
+  "cosmo"      => "//netdna.bootstrapcdn.com/bootswatch/3.1.1/cosmo/bootstrap.min.css",
+  "cyborg"     => "//netdna.bootstrapcdn.com/bootswatch/3.1.1/cyborg/bootstrap.min.css",
+  "darkly"     => "//netdna.bootstrapcdn.com/bootswatch/3.1.1/darkly/bootstrap.min.css",
+  "flatly"     => "//netdna.bootstrapcdn.com/bootswatch/3.1.1/flatly/bootstrap.min.css",
+  "journal"    => "//netdna.bootstrapcdn.com/bootswatch/3.1.1/journal/bootstrap.min.css",
+  "lumen"      => "//netdna.bootstrapcdn.com/bootswatch/3.1.1/lumen/bootstrap.min.css",
+  "readable"   => "//netdna.bootstrapcdn.com/bootswatch/3.1.1/readable/bootstrap.min.css",
+  "simplex"    => "//netdna.bootstrapcdn.com/bootswatch/3.1.1/simplex/bootstrap.min.css",
+  "slate"      => "//netdna.bootstrapcdn.com/bootswatch/3.1.1/slate/bootstrap.min.css",
+  "spacelab"   => "//netdna.bootstrapcdn.com/bootswatch/3.1.1/spacelab/bootstrap.min.css",
+  "superhero"  => "//netdna.bootstrapcdn.com/bootswatch/3.1.1/superhero/bootstrap.min.css",
+  "united"     => "//netdna.bootstrapcdn.com/bootswatch/3.1.1/united/bootstrap.min.css",
+  "yeti"       => "//netdna.bootstrapcdn.com/bootswatch/3.1.1/yeti/bootstrap.min.css"
 );
 
 $source = "hosted";
