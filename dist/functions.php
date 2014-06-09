@@ -6,7 +6,7 @@ if ($apps['encryption'] === "true") { require "encryption/functions.php"; }
 #currentURL()
 #Gets the current page's full url
 function currentURL() {
-	return "//$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+	return htmlentities(trim(strip_tags(htmlspecialchars("//$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"))));
 }
 
 #numberOfRows("users", "username", $enteredUsername)
@@ -86,7 +86,7 @@ function verifySession($session = false) {
 }
 
 function sanitize($data) {
-	return mysql_real_escape_string($data);
+	return @mysql_real_escape_string($data);
 }
 
 #redirect301("http://example.com")

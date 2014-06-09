@@ -6,8 +6,7 @@ $pageDyn = [
 
 require "../header.php";
 
-if (verifySession() === true) { $error .= '<div class="alert alert-success">You\'re logged in as: '.$session['username'].'</div>'; } #If the session was correctly verified, display a message saying the user is logged in
-
+if (verifySession() === true) { redirect301("//$domain/ucp"); }
 if (verifySession() === true && isset($_GET['url'])) { redirect301($_GET['url']); } 
 
 #Error displaying: Checks the URL to see if any of them are set
@@ -38,7 +37,7 @@ if (isset($_GET['notSet'])) { $error = '<div class="alert alert-warning">Usernam
 ?>
 
 <div class="col-md-4 col-md-offset-4">
-  <form role="form" method="post" action="login.php?url=<?php echo urlencode(currentURL()); ?>">
+  <form role="form" method="post" action="login.php?url=<?php echo currentURL(); ?>">
     <?php echo $error; ?>
     <div class="form-group">
     <label for="u">Username</label>
