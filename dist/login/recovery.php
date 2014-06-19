@@ -1,6 +1,10 @@
 <?php
 
-if (!$all) { require "allFiles.php"; } #Include Functions if they're not already here
+$pageDyn = [
+  "title" => "Recover Your Account"
+];
+require "../header.php";
+if (!$all) { require "../allFiles.php"; } #Include Functions if they're not already here
 
 if (!isset($_GET['blob'])) { #If the blob variable is not set in the url
 	if (isset($_POST['u']) && isset($_POST['e'])) { #If the username and email were entered for a user
@@ -10,6 +14,8 @@ if (!isset($_GET['blob'])) { #If the blob variable is not set in the url
 		
 		#Email
 		$e       = strtolower(sanitize($_POST['e']));
+    $ce      = $e;
+    if ($apps['encryption'] === true) { $e = encrypt($e, $u); }
 		$rE      = strtolower(session($u)['email']);
 		
 		#Blob
@@ -23,8 +29,7 @@ if (!isset($_GET['blob'])) { #If the blob variable is not set in the url
 			if ($e === $rE) { #If the entered email is equal to the actual email of the user
 				insertUserBlob($u, $b, 'recover'); #Actually insert the blob
 
-				$to      = $e; #Send to the email
-				if ($apps['encryption'] === true) { $to = decrypt($e, $u); } #Decrypts the email if the encryption system is turned on
+				$to      = $ce; #Send to the email
 				$subject = 'Finish Recovering Your '.$sitename.' Account'; #Set the subject of the email
 				$message = "
 Hello {$u}
@@ -32,7 +37,7 @@ Hello {$u}
 You have received this message because you -or someone pretending to be you- recently attempted to recover your {$sitename} account.
 
 If this WAS you, please follow this link in order to reset your password:
-//{$domain}{$system_location}/{$recovery_page}?blob={$b}
+//{$domain}/login/recovery.php?blob={$b}
 
 ======
 
@@ -44,91 +49,84 @@ Thank you"; #Set the text of the message
 					'X-Mailer: PHP/' . phpversion(); #Set the headers of the email
 
 				mail($to, $subject, $message, $headers); #Send the message
-				redirect301("//{$domain}?recoversent"); #Redirect to the home page saying the account recovery email was sent
+				redirect301("//{$domain}/login/recover?recoversent"); #Redirect to the home page saying the account recovery email was sent
 			} else { #If the entered email did not match the user's actual email
-				redirect301("//{$domain}?fail=email"); #Redirect to the home page stating the problem
+				redirect301("//{$domain}/login/recover?fail=email"); #Redirect to the home page stating the problem
 			}
 		} else { #If there was not a matching user
-			redirect301("//{$domain}?fail=username"); #Redirect to the home page stating the problem
+			redirect301("//{$domain}/login/recover??fail=username"); #Redirect to the home page stating the problem
 		}
 	}
-} else { #If there is a blob set in the url (example.com?blob=)
+} elseif (isset($_GET['blob'])) { #If there is a blob set in the url (example.com?blob=)
 	$query = mysql_query("SELECT * FROM userblobs WHERE code='".$_GET['blob']."' AND date<'".strtotime('+3 days')."' AND action='recover'"); #Find the matching blob
 	$numrows = mysql_num_rows($query);
 	if ($numrows === 1) { #If the blob was found
 		while($value = mysql_fetch_array($query)) { $username = $value['user']; $uname = $username; }
-		echo '
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>Recovery Page</title>
-		<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
-		<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-	</head>
-	<body>
-		<div class="container" style="margin-top:30px">
+    if (isset($_GET['match'])) { $error .= "<div class='alert alert-warning'>The entered passwords must match</div>"; }
+    echo '
 			<div class="col-md-4 col-md-offset-4">
 				<div class="login-panel panel panel-default">
 					<div class="panel-body">
 					'.$error.'
 					<form class="form" method="post" action="#">
-					  <h2 class="text-center">'.$uname.'</h2>
-					  <div class="well">
-						<div class="form-group" id="Field1Group">
-							  <label class="control-label" for="Field1">New Password</label>
-							  <input type="password" id="Field1" class="form-control" name="p">
-						  </div>
-						  <div class="form-group" id="Field2Group">
-							  <label class="control-label" for="Field2">Confirm New Password</label>
-							  <input type="password" id="Field2" class="form-control" name="cp">
-						  </div>
-					  </div>
+            <div class="form-group" id="Field1Group">
+              <label class="control-label" for="Field1">New Password</label>
+              <input type="password" id="Field1" class="form-control" name="p">
+            </div>
+            <div class="form-group" id="Field2Group">
+              <label class="control-label" for="Field2">Confirm New Password</label>
+              <input type="password" id="Field2" class="form-control" name="cp">
+            </div>
 					  <input type="submit" class="btn btn-primary btn-block button btn-lg" value="Reset Password"></input>
 					</form>
 					</div>
 				</div>
 			</div>
-		</div>
-	</body>
-</html>
 		'; #Echo the page to change the password
 		if (isset($_POST['p']) && isset($_POST['cp'])) { #If the new passwords were entered
+      $session = session();
 			$q       = $_POST['p'];
-			$ns      = hash("sha256", "new salt: recovery".substr(str_shuffle(str_repeat("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@$%^&_+{}[]:<.>?", 27)), 1, 32)); #Make a new salt for the user
-			$date    = time();
-			$action  = "sql";
-			$item    = "oldpassword";
-			$answer  = session()['password']; #Setting the old pasword to be set in the database
-			$newpass = hash("sha256", $q.$ns); #Hash the new password with the new salt
-			$extra   = ", password='".$newpass."', passwordchanged='".$date."', salt='".$ns."'"; #Extra SQL for the query
+      $w       = $_POST['cp'];
+      
+      if ($q === $w) { #If the entered passwords match
+        $ns      = hash("sha256", "new salt: recovery".substr(str_shuffle(str_repeat("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@$%^&_+{}[]:<.>?", 27)), 1, 32)); #Make a new salt for the user
+        $date    = time();
+        $action  = "sql";
+        $item    = "oldpassword";
+        $answer  = session()['password']; #Setting the old pasword to be set in the database
+        $newpass = hash("sha256", $q.$ns); #Hash the new password with the new salt
+        $extra   = ", password='".$newpass."', passwordchanged='".$date."', oldsalt='".$session['salt']."', salt='".$ns."'"; #Extra SQL for the query
 
-			$to      = session()['email']; #Send the alert to the user
-			if ($apps['encryption'] === true) { $to = decrypt(session()['email'], $u); } #Decrypts the user's email if encryption is turned on
-			$subject = 'Your password on '.$sitename.' has changed!'; #Sets the message's subject
-			$message = '
-Hello '.$uname.'
+        $to      = session()['email']; #Send the alert to the user
+        if ($apps['encryption'] === true) { $to = decrypt(session()['email'], $u); } #Decrypts the user's email if encryption is turned on
+        $subject = 'Your password on '.$sitename.' has changed!'; #Sets the message's subject
+        $message = '
+  Hello '.$session['username'].'
 
-You have received this message because your password was recently changed on {$sitename} through way of recovering your account.
+  You have received this message because your password was recently changed on '.$sitename.' through way of recovering your account.
 
-======
+  ======
 
-If this was not you, we advise that you update your password on at least {$sitename} immediately.
+  If this was not you, we advise that you update your password on at least '.$sitename.' immediately.
 
-Thank you'; #Sets the content of the message
-			$headers = 'From: noreply@'.$domain_simple."\r\n" .
-				'Reply-To: support@'.$domain_simple."\r\n" .
-				'X-Mailer: PHP/' . phpversion(); #Sets the header of the message
+  Thank you'; #Sets the content of the message
+        $headers = 'From: noreply@'.$domain_simple."\r\n" .
+          'Reply-To: support@'.$domain_simple."\r\n" .
+          'X-Mailer: PHP/' . phpversion(); #Sets the header of the message
 
-			mail($to, $subject, $message, $headers); #Sends the message
-			mysql_query("UPDATE users SET $item='$answer'".$extra." WHERE id='".$id."'"); #Update the user
-			redirect301("//{$domain}?recovered"); #Redirect to the home page saying the account was recovered
-			mysql_query("DELETE FROM userblobs WHERE code='".$_GET['blob']."' AND action='recover' LIMIT 1"); #Delete the currently set blob from the database
-		}
+        mail($to, $subject, $message, $headers); #Sends the message
+        mysql_query("UPDATE users SET $item='$answer'".$extra." WHERE id='".$id."'"); #Update the user
+        redirect301("//{$domain}/login?recovered"); #Redirect to the home page saying the account was recovered
+        mysql_query("DELETE FROM userblobs WHERE code='".$_GET['blob']."' AND action='recover' LIMIT 1"); #Delete the currently set blob from the database
+      } else { #If the entered passwords do not match
+        redirect301(currentURL()."&match");
+      }
+    }
 	} else { #If blob was not found
-    redirect301("//{$domain}/{$recovery_page}?badBlob");
+    redirect301("//{$domain}/login/recover?badBlob");
   }
 } else { #If no blob was found
-  redirect301("//{$domain}/{$recovery_page}?noBlob");
+  redirect301("//{$domain}/login/recover?noBlob");
 }
 ?>
 	

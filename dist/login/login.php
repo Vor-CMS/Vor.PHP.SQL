@@ -24,14 +24,14 @@ if (isset($_POST['u']) && isset($_POST['p'])) { #If a username and password were
     }
     
     if (numberOfRows("users", "username", $username) === 1) { #If there is a user with that matching name
-        $session   = session($username); #Gets user information based off of the entered username
-        $password  = $session['password']; #Their actual current password
-        $salt      = $session['salt']; #Their current salt
-        $oldsalt   = $session['oldsalt']; #Their old salt
-        $pass      = hash("sha256", $_POST['p'].$salt); #Hash their password
-        $oldpass   = hash("sha256", $_POST['p'].$oldsalt); #Hash their password with the old salt
-        $activated = $session['activated']; #User activation status
-        $tstep     = $session['2step']; #User 2step status
+      $session   = session($username); #Gets user information based off of the entered username
+      $password  = $session['password']; #Their actual current password
+      $salt      = $session['salt']; #Their current salt
+      $oldsalt   = $session['oldsalt']; #Their old salt
+      $pass      = hash("sha256", $_POST['p'].$salt); #Hash their password
+      $oldpass   = hash("sha256", $_POST['p'].$oldsalt); #Hash their password with the old salt
+      $activated = $session['activated']; #User activation status
+      $tstep     = $session['2step']; #User 2step status
         
       if ($pass === $password) { #If the hashed password is the same as their current password
         if ($activated === "1") { #If they're activated

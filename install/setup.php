@@ -13,8 +13,7 @@ require "emptyDir.php";
 $response = array();
 
 if (!isset($_POST['cryption'])) { exit; }  
-$result = $_POST['cryption'];  
-if (!isset($result)) { exit; }
+$result = $_POST['cryption'];
 
 $json_str = $result;  
 $jsonObj  = json_decode($json_str);

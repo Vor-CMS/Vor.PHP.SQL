@@ -37,12 +37,7 @@ if (verifySession() === true) {
         </div>
         <div class="navbar-collapse collapse" id="navbar-main">
           <ul class="nav navbar-nav">
-            <li>
-              <a href="../help/">Help</a>
-            </li>
-            <li>
-              <a href="http://news.bootswatch.com">Blog</a>
-            </li>
+            <!--<li><a href="../help/">Help</a></li>-->
           </ul>
 
           <ul class="nav navbar-nav navbar-right">
@@ -57,15 +52,17 @@ if (verifySession() === true) {
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">'.$session['username'].' <b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                  <li><a href="//'.$domain.'/ucp">Settings</a></li>
-                  <li><a href="//'.$domain.'/login/logout.php?url='.currentURL().'">Logout</a></li>
+                  <li><a href="//'.$domain.'/ucp">Settings</a></li>';
+                  
+              if ($session['title'] === "Super-Admin") { echo '<li><a href="//'.$domain.'/admin">Admin</a></li>'; } #Change this to work with custom ranks
+                  
+              echo '    <li><a href="//'.$domain.'/login/logout.php?url='.currentURL().'">Logout</a></li>
                 </ul>
               </li>
               ';
             }
             ?>
-            <li><a href="forums">Forums</a></li>
-            <li><a href="linkShrinker">Link Shrinker</a></li>
+            <!--<li><a href="forums">Forums</a></li>-->
           </ul>
 
         </div>

@@ -44,7 +44,7 @@ if (isset($_GET['notSet'])) { $error = '<div class="alert alert-warning">Usernam
     <input type="text" class="form-control" id="u" name="u" placeholder="Username">
     </div>
     <div class="form-group">
-    <label for="p">Password <a href="recover.php">(forgot password)</a></label>
+    <label for="p">Password <a href="recover">(forgot password)</a></label>
     <input type="password" class="form-control" id="p" name="p" placeholder="Password">
     </div>
     <button type="submit" class="btn btn-lg btn-block btn-primary">Sign in</button>
