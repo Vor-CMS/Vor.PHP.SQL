@@ -8,7 +8,7 @@ Basically, it's a bunch of different systems you normally find separately in one
 ##Todo
 - [X] Remove actual Bootstrap (use BootstrapCDN)
 - [X] Remove actual JQuery (use CDNJS)
-- [X] Replace claps.js with JQuery functions
+- [X] Replace [Zbee/claps.js](https://gist.github.com/Zbee/fb04b91ec3eae0f3b611) with JQuery functions
 - [ ] Installer
   - [X] Make the backend go through all the options in a sane manner
   - [ ] Make the backend react to all the options fully
