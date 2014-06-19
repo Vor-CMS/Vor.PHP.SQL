@@ -11,10 +11,10 @@ Basically, it's a bunch of different systems you normally find separately in one
 - [X] Replace claps.js with JQuery functions
 - [ ] Installer
   - [X] Make the backend go through all the options in a sane manner
-  - [ ] Make the backend react to all the options
+  - [ ] Make the backend react to all the options fully
   - [ ] Make the backend verify all the options and halt the whole thing if any are suspicious
   - [ ] Make the setup wizard my own, that way it will fit better with the themes (instead of using the [Bootstrap Application Wizard](https://github.com/amoffat/bootstrap-application-wizard)) (?)
-  - [ ] Figure out what install path I want to take (1: Just setup config files for the system, 2: Extract the needed items from a .zip and set them up, 3: Make all of the files from a master PHP file that makes downloading the system very fast and instead lengthens install)
+  - [X] Figure out what install path I want to take (1: Just setup config files for the system, 2: Extract the needed items from a .zip and set them up, 3: Make all of the files from a master PHP file that makes downloading the system very fast and instead lengthens install)
   - [ ] Once feature are selected, add option selection for each one
 - [ ] Encryption
   - [ ] JS (front-end) and PHP (back-end + front-end) compatible, AES-complaint, super strong encryption and decryption function set ()
@@ -60,7 +60,7 @@ Basically, it's a bunch of different systems you normally find separately in one
 - [ ] Login System
   - [X] Adapt [Zbee/loginSystem.PHP](https://github.com/Zbee/loginSystem.PHP) compatible with the Vor configuration
   - [ ] Custom ranks
-  - [ ] Administration panel for the users (all panels are combined into the same place)
+  - [ ] Administration panel for the users (most panels will be combined into the same place (/ucp))
   - [ ] Latest activity by user
   - [ ] Account deletion queueing (when users decide to delete their account, it's deactivated but still exists for ... 7(?) days)
   - [ ] Separation between deletion of just the account, and deleting everything associated with the account (posts, comments, threads, links, etc)
@@ -73,7 +73,8 @@ Basically, it's a bunch of different systems you normally find separately in one
   - [ ] Make new entries
   - [ ] Flag entries for later
   - [ ] Make it possible to see if there were X many logs by a certain user in a certain period to prevent spamming
-  - [ ] Make rollbacks possible
+    - [ ] Build checking and reporting of spamming into logging
+  - [ ] Make roll-backs possible
   - [ ] Contain a JSON style content of the new data and the old data (optional feature?)
 - [ ] More Things!
 
