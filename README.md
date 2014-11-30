@@ -1,20 +1,15 @@
 #Vor.PHP.SQL
+The PHP and MySQL implementation of the Vor CMS.
 
-The PHP and MySQL implementation of the Vor Application Group.
-The Vor Application Group is a set of small applications that help you launch a quality website FAST.
-
-Basically, it's a bunch of different systems you normally find separately in one big, gorgeous bundle designed to help those of us who are not developers to launch an amazing website very quickly with all the bells and whistles you could expect to be added by a major development studio.
+Basically, it's a bunch of different systems you normally find separately in one big, gorgeous bundle designed to help those of us who are not developers to launch any type of amazing website very quickly with all the bells and whistles you could expect to be added by a major development studio.
 
 ##Todo
-- [X] Remove actual Bootstrap (use BootstrapCDN)
-- [X] Remove actual JQuery (use CDNJS)
-- [X] Replace [Zbee/claps.js](https://gist.github.com/Zbee/fb04b91ec3eae0f3b611) with JQuery functions
 - [ ] Installer
   - [X] Make the backend go through all the options in a sane manner
   - [ ] Make the backend react to all the options fully
   - [ ] Make the backend verify all the options and halt the whole thing if any are suspicious
   - [ ] Make the setup wizard my own, that way it will fit better with the themes (instead of using the [Bootstrap Application Wizard](https://github.com/amoffat/bootstrap-application-wizard)) (?)
-  - [X] Figure out what install path I want to take (1: Just setup config files for the system, 2: Extract the needed items from a .zip and set them up, 3: Make all of the files from a master PHP file that makes downloading the system very fast and instead lengthens install)
+  - [ ] Figure out what install path I want to take (1: Just setup config files for the system, 2: Extract the needed items from a .zip and set them up, 3: Make all of the files from a master PHP file that makes downloading the system very fast and instead lengthens install)
   - [ ] Once feature are selected, add option selection for each one
 - [ ] Encryption
   - [ ] JS (front-end) and PHP (back-end + front-end) compatible, AES-complaint, super strong encryption and decryption function set ()
@@ -58,14 +53,14 @@ Basically, it's a bunch of different systems you normally find separately in one
   - [ ] Add notes to links
   - [ ] Optional monetization of links (ad on redirect page)
 - [ ] Login System
-  - [X] Adapt [Zbee/loginSystem.PHP](https://github.com/Zbee/loginSystem.PHP) compatible with the Vor configuration
+  - [ ] Adapt [Zbee/UserSystem](https://github.com/Zbee/UserSystem) compatible with the Vor configuration
   - [ ] Custom ranks
   - [ ] Administration panel for the users (most panels will be combined into the same place (/ucp))
   - [ ] Latest activity by user
   - [ ] Account deletion queueing (when users decide to delete their account, it's deactivated but still exists for ... 7(?) days)
   - [ ] Separation between deletion of just the account, and deleting everything associated with the account (posts, comments, threads, links, etc)
-  - [X] Let users resume a valid session if their IP matches an existing one
-  - [X] Make a rich UCP base
+  - [ ] Let users resume a valid session if their IP matches an existing one
+  - [ ] Make a rich UCP base
   - [ ] Expand the UCP
   - [ ] Let users subscribe to different notifications
   - [ ] Make the user set certain areas of the site to be restricted to rank
